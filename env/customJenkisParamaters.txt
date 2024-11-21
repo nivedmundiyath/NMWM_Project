@@ -1,0 +1,15 @@
+source_path=
+target_path=
+abe_path=
+wM_package=NMWM_PackageRepo
+git_credId=NM_git_cred
+git_branch=NMBuildTest
+deployerHost=localhost
+deployerPort=5557
+targetHost=localhost
+targetPort=5557
+targetWMVersion=10.11
+UseSSLTargetIS=false
+deployerScript_path=
+testSuiteExec_path=
+wMTestHomePath=

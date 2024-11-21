@@ -1,0 +1,71 @@
+ pipeline {
+    agent any
+	
+
+				
+	environment{
+	
+				def customJenParam = readFile file: "${workspace}/env/customJenkisParamaters.txt"
+                // source_path = customJenParam.replaceAll("source_path=", "")
+				// target_path = customJenParam.replaceAll("target_path=", "")
+				// abe_path = customJenParam.replaceAll("abe_path=", "")
+				wM_package = customJenParam.replaceAll("wM_package=", "")
+				git_credId = customJenParam.replaceAll("git_credId=", "")
+				git_branch = customJenParam.replaceAll("git_branch=", "")
+				deployerHost = customJenParam.replaceAll("deployerHost=", "")
+				deployerPort = customJenParam.replaceAll("deployerPort=", "")
+				targetHost = customJenParam.replaceAll("targetHost=", "")
+				targetPort = customJenParam.replaceAll("targetPort=", "")
+				targetWMVersion = customJenParam.replaceAll("targetWMVersion=", "")
+				UseSSLTargetIS = customJenParam.replaceAll("UseSSLTargetIS=", "")
+				// deployerScript_path = customJenParam.replaceAll("deployerScript_path=", "")
+				// testSuiteExec_path = customJenParam.replaceAll("testSuiteExec_path=", "")
+				// wMTestHomePath = customJenParam.replaceAll("wMTestHomePath=", "")
+				
+				git_url = "https://github.com/nivedmundiyath/${wM_package}.git
+				
+				
+				}
+
+    stages {
+		
+		
+        stage('Build') {
+            steps {
+			
+				echo 'Calling build pipeline..'
+				
+			// build job: 'NMBuildAutomationV2_build', parameters: [string(name: 'source_path', value: "${source_path}"), string(name: 'target_path', value: "${target_path}"),string(name: 'abe_path', value: "${abe_path}"), string(name: 'git_url', value: "${git_url}"), string(name: 'git_credId', value: "${git_credId}"), string(name: 'git_branch', value: "${git_branch}")]
+			
+			build job: 'NMBuildAutomationV2_build', parameters: [ string(name: 'git_url', value: "${git_url}"), string(name: 'git_credId', value: "${git_credId}"), string(name: 'git_branch', value: "${git_branch}")]
+				
+            }
+        }
+		
+		stage('Deploy') {
+            steps {
+			
+				echo 'Calling deploy pipeline..'
+				
+			// build job: 'NMBuildAutomationV2_deploy', parameters: [string(name: 'deployerHost', value: "${deployerHost}"), string(name: 'deployerPort', value: "${deployerPort}"),string(name: 'targetHost', value: "${targetHost}"), string(name: 'targetPort', value: "${targetPort}"), string(name: 'targetWMVersion', value: "${targetWMVersion}"), string(name: 'UseSSLTargetIS', value: "${UseSSLTargetIS}"), string(name: 'target_path', value: "${target_path}"), string(name: 'deployerScript_path', value: "${deployerScript_path}")]
+			
+			build job: 'NMBuildAutomationV2_deploy', parameters: [ string(name: 'deployerHost', value: "${deployerHost}"), string(name: 'deployerPort', value: "${deployerPort}"),string(name: 'targetHost', value: "${targetHost}"), string(name: 'targetPort', value: "${targetPort}"), string(name: 'targetWMVersion', value: "${targetWMVersion}"), string(name: 'UseSSLTargetIS', value: "${UseSSLTargetIS}")]
+			
+            }
+        }
+		
+        stage('Test') {
+            steps {
+
+				echo 'Calling test pipeline..'
+				
+			 // build job: 'NMBuildAutomationV2_test', parameters: [string(name: 'targetHost', value: "${targetHost}"), string(name: 'targetPort', value: "${targetPort}"),string(name: 'scopePackage', value: "${wM_package}"), string(name: 'testSuiteExec_path', value: "${testSuiteExec_path}"), string(name: 'wMTestHomePath', value: "${wMTestHomePath}")]
+			 
+			 build job: 'NMBuildAutomationV2_test', parameters: [ string(name: 'targetHost', value: "${targetHost}"), string(name: 'targetPort', value: "${targetPort}"),string(name: 'scopePackage', value: "${wM_package}")]
+			 
+			 
+            }
+        }
+        
+    }
+}
