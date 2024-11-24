@@ -1,3 +1,5 @@
+ def jsonData
+ 
  pipeline {
     agent any
 	
@@ -10,7 +12,7 @@
                     def jsonFilePath = "${workspace}/env/customJenkinsParamaters.json"
 
                     // Read and parse the JSON file
-                    def jsonData = readJSON file: jsonFilePath
+                    jsonData = readJSON file: jsonFilePath
                         
                 
 				git_url = "https://github.com/nivedmundiyath/${jsonData.wM_package}.git"
@@ -26,7 +28,7 @@
 			
 				echo 'Calling build pipeline..'
 				
-			// build job: 'NMBuildAutomationV2_build', parameters: [string(name: 'source_path', value: "${jsonData.source_path}"), string(name: 'target_path', value: "${jsonData.target_path}"),string(name: 'abe_path', value: "${jsonData.abe_path}"), string(name: 'git_url', value: "${jsonData.git_url}"), string(name: 'git_credId', value: "${jsonData.git_credId}"), string(name: 'git_branch', value: "${jsonData.git_branch}")]
+			// build job: 'NMBuildAutomationV2_build', parameters: [string(name: 'source_path', value: "${jsonData.source_path}"), string(name: 'target_path', value: "${jsonData.target_path}"),string(name: 'abe_path', value: "${jsonData.abe_path}"), string(name: 'git_url', value: "${git_url}"), string(name: 'git_credId', value: "${jsonData.git_credId}"), string(name: 'git_branch', value: "${jsonData.git_branch}")]
 			
 			build job: 'NMBuildAutomationV2_build', parameters: [ string(name: 'git_url', value: "${git_url}"), string(name: 'git_credId', value: "${jsonData.git_credId}"), string(name: 'git_branch', value: "${jsonData.git_branch}")]
 				
