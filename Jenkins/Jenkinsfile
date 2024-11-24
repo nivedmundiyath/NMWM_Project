@@ -1,12 +1,19 @@
- def jsonData
+def jsonData
  
  pipeline {
     agent any
 	
 
+    stages {
+		
+		
+        stage('Build') {
+            steps {
+			
+			
+			script{
 				
-	environment{
-	
+				echo 'Getting customJenkinsParamaters ..'
 				
 				  	 // Path to the JSON file
                     def jsonFilePath = "${workspace}/env/customJenkinsParamaters.json"
@@ -19,12 +26,6 @@
 				
 				
 				}
-
-    stages {
-		
-		
-        stage('Build') {
-            steps {
 			
 				echo 'Calling build pipeline..'
 				
