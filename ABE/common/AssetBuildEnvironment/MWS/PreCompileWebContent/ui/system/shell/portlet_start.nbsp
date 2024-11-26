@@ -1,0 +1,24 @@
+<%@ page import="com.webmethods.portal.mech.storage.page.PortletData" %>
+<%@ page import="javax.servlet.http.HttpServletResponse" %>
+
+<%
+HttpServletResponse response = (HttpServletResponse) get("response");
+PortletData portlet = (PortletData) get("portlet");
+String cssClass = portlet.getCssClass();
+String cssStyle = portlet.getCssStyle();
+String bgImage = portlet.getBgImage();
+
+if (bgImage != null && bgImage.length() > 0) {
+    if (cssStyle != null && cssStyle.length() > 0) {
+        cssStyle += "; background-image:url(" + response.encodeURL(getSkinProperty(bgImage)) + ");";
+    } else {
+        cssStyle = "background-image:url(" + response.encodeURL(getSkinProperty(bgImage)) + ");";
+    }
+}
+%>
+
+<div id="<%=portlet.getUri()%>" class="shell-portlet-container">
+<div
+<% if (cssClass != null && cssClass.length() > 0) { %> class="<%=cssClass%>"<% } %>
+<% if (cssStyle != null && cssStyle.length() > 0) { %> style="<%=cssStyle%>"<% } %>
+>

@@ -1,0 +1,112 @@
+<%@ page import="com.webmethods.caf.faces.render.xsrf.AXSRFTVendingMachineFactory" %>
+<%@ page import="com.webmethods.caf.script.servlet.ScriptServletCache" %>
+<%@ page import="com.webmethods.portal.bizPolicy.IContext" %>
+<%@ page import="com.webmethods.portal.bizPolicy.biz.clipboard.impl.ClipboardFactory" %>
+<%@ page import="com.webmethods.portal.bizPolicy.impl.ContextFactory" %>
+<%@ page import="com.webmethods.portal.framework.presentation.PresentationData" %>
+<%@ page import="com.webmethods.portal.system.PortalSystem" %>
+<%@ page import="com.webmethods.portal.taglib.ui.command.ClientSideScriptsUtil" %>
+<%@ page import="com.webmethods.rtl.encode.HTMLEncoder" %>
+<%@ page import="com.webmethods.rtl.encode.JSEncoder" %>
+<%@ page import="com.webmethods.rtl.util.StringTools" %>
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="java.io.Writer" %>
+<%@ page import="javax.servlet.http.HttpServletRequest" %>
+<%@ page import="javax.servlet.http.HttpServletResponse" %>
+<%@ page import="com.webmethods.portal.resources.Ui" %>
+<%
+Writer out = (Writer) get("out");
+HttpServletRequest request = (HttpServletRequest) get("request");
+HttpServletResponse response = (HttpServletResponse) get("response");
+IContext ctx = ContextFactory.acquireContext(request);
+PresentationData pdo = PresentationData.getPresentationData(request);
+
+String currentRequestURL = pdo.getCurrentRequestURL();
+if (currentRequestURL == null) {
+    currentRequestURL = "";
+}
+
+String title = getString("title", "");
+boolean popups = "true".equals(getString("popups", "true"));
+String axsrft = AXSRFTVendingMachineFactory.getUnit().produceToken(request);
+String generaljsVersion = ScriptServletCache.getVersion("generaljs.version");
+
+String headerType = request.getHeader("User-Agent");
+boolean isSafari = false;
+if(headerType != null && headerType.length() > 0) {
+	isSafari = (!headerType.contains("Chrome") && headerType.contains("Safari"));
+}
+
+%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="<%=pdo.get("Content-Language")%>">
+<head>
+<meta http-equiv="Content-Type" content="<%=pdo.getMimeType()%>">
+<title><%=pdo.getSystemTitle()%><% if (!title.equals("")) { out.write(": "); HTMLEncoder.encoder().encode(title, out); } %></title>
+<%
+	String mwsTestMode = System.getProperty("mws.test.mode");
+	if (mwsTestMode != null && mwsTestMode.equals("true")) {
+%>
+	<!-- powered by webMethods Portal <%= System.getProperty("portal.build") %> -->
+	<!--
+<%
+		try {
+%>
+			// for test automation
+			current-username: <%= ctx.getUserName() %>;
+			current-locale: <%= ctx.getLocale() %>;
+			current-shell: <%= pdo.getShell().getThing().getName() %>;
+<%
+		} catch (Exception ex) {
+			ex.printStackTrace(new PrintWriter(out));
+		}
+%>
+	-->
+<%
+	}
+%>
+<% if (popups) { %>
+<script type="text/javascript">
+var g_oPopupHasStartPageRights = <%=ClientSideScriptsUtil.hasSetStartPageRights(ctx)%>;
+var g_oPopupThingMenuItems = [""<%
+for (String item : ClientSideScriptsUtil.listPopupMenuItems(ctx)) {
+    %>, "<%=item%>"<%
+}
+%>];
+</script>
+<% } %>
+<link rel="stylesheet" type="text/css" href="<%= response.encodeURL(getSkinProperty("css/skin" + (isSafari ? "-safari" : "") + ".css")) %>">
+
+<script type="text/javascript" src="<%=ClientSideScriptsUtil.encodeURL( pdo.getCanonicalServletPath() +"/ui/dyn/general.js", response, ctx.getLocale(), generaljsVersion)%>"></script>
+<script type="text/javascript" src="<%=response.encodeURL(getSkinProperty("scripts/skin.js"))%>"></script>
+<script type="text/javascript" src="<%=ClientSideScriptsUtil.encodeURL( pdo.getCanonicalServletPath() +"/wm_cafshared/dyn/scriptaculous/effects.js", response, ctx.getLocale(), generaljsVersion)%>"></script>
+
+<script type="text/javascript">
+	<%-- anti-cross-site-request-forgery token --%>
+	var axsrft = "<%=axsrft%>";
+	var eaxsrft = encodeURIComponent(axsrft);
+	<%-- delay ie DOMContentLoaded event until this element is accessible --%>
+	var waitForElementToFireContentLoadedEvent = "footer";
+	<%-- unsupported globals --%>
+	var g_sCurrentThingID = "<%=pdo.getResourceID() != null ? JSEncoder.encoder().encode(pdo.getResourceID()) : ""%>";
+	var g_sFullServletPath = "<%=pdo.getCanonicalServletPath()%>";
+	var g_bIsAdmin = <%=ctx.isAdminSession()%>;
+	var g_bIsAnonymous = <%=ctx.isAnonymous()%>;
+	var g_sServerURL = "<%=JSEncoder.encoder().encode(pdo.getRequestedServerURL())%>";
+	var g_sUserID = "<%=ctx.getUserID()%>";
+	var g_sClipboardURI = "<%=ClipboardFactory.getClipboardInfo(ctx)%>";
+	var g_sImagesPath = "<%=pdo.getImages()%>";
+	var g_sCurrentURL = "<%=JSEncoder.encoder().encode(currentRequestURL)%>";
+	var g_nCurrentThingID = g_sCurrentThingID;
+	var g_nUserID = g_sUserID;
+    var g_enableCMDBtnTimeout = <%=Boolean.parseBoolean(System.getProperty("com.softwareag.mws.caf.enableCMDBtntimeout", "true"))%>;
+</script>
+
+<link rel="shortcut icon" type="image/x-icon" href="<%=response.encodeURL(getSkinProperty("images/portal.ico"))%>">
+<%=com.webmethods.rtl.util.ObjectUtil.getProperty(pdo.getShell().getThing(), "head_html")%>
+</head>
+<body>
+<noscript>
+    <div id="mws_noscript" class="portlet-msg-alert"><h3><%=PortalSystem.localizeMessage(Ui.class, "POP.013.0100", null, true)%></h3></div>
+</noscript>
+<script type="text/javascript">Event.fire(document, "dom:started");</script>

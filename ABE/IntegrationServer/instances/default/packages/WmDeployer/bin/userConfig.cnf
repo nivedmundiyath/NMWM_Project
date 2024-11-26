@@ -1,0 +1,6 @@
+#Modified to encrypt pwd.
+#Tue Nov 05 00:23:25 EST 2024
+port=5557  
+host=localhost  
+pwd={AES}Y5IgMqjfvkgbg7p5VUZztw\=\=
+user=Administrator  
