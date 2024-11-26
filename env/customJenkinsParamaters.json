@@ -1,7 +1,7 @@
 {
-	"source_path": "ws/source",
-	"target_path": "ws/target",
-	"abe_path": "ABE/common/AssetBuildEnvironment",
+	"source_path": "ws\source",
+	"target_path": "ws\target",
+	"abe_path": "ABE\common\AssetBuildEnvironment",
     "wM_package": "NMWM_PackageRepo",
     "git_credId": "NM_git_cred",
 	"git_branch": "NMBuildTest",
@@ -11,8 +11,8 @@
 	"targetPort": "5557",
 	"targetWMVersion": "10.11",
 	"UseSSLTargetIS": "false",
-	"deployerScript_path": "ABE/IntegrationServer/instances/default/packages/WmDeployer/bin",
-	"testSuiteExec_path": "ws/WmTestSuiteExecutor",
+	"deployerScript_path": "ABE\IntegrationServer\instances\default\packages\WmDeployer\bin",
+	"testSuiteExec_path": "ws\WmTestSuiteExecutor",
 	"wMTestHomePath": "ABE"
 }
 
