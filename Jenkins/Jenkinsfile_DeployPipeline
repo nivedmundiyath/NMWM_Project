@@ -1,0 +1,114 @@
+ pipeline {
+    agent any
+	
+	parameters {
+				
+				string defaultValue: 'localhost', description: 'Provide the deployer host name', name: 'deployerHost', trim: true
+				string defaultValue: '5557', description: 'Provide the deployer port number', name: 'deployerPort', trim: true
+				string defaultValue: 'localhost', description: 'Provide the target host name', name: 'targetHost', trim: true
+				string defaultValue: '5557', description: 'Provide the target port number', name: 'targetPort', trim: true
+				string defaultValue: '10.11', description: 'Provide the target IS wM version', name: 'targetWMVersion', trim: true
+				booleanParam defaultValue: 'false', description: 'Use SSL option for target IS', name: 'UseSSLTargetIS'
+				string defaultValue: 'test', description: 'Provide wM package name for repo alias name', name: 'wM_package', trim: true
+                string defaultValue: 'C:/jenkins/test/output', description: 'Provide the build target path for repository alias', name: 'target_path', trim: true
+				string defaultValue: 'C:/jenkins/ABE/IntegrationServer/instances/default/packages/WmDeployer/bin', description: 'Provide the deployer script path', name: 'deployerScript_path', trim: true
+				
+				}
+				
+	environment {
+	
+				deployerCreds = credentials('DeployerSecret')
+				targetCreds = credentials('TargetISSecret')
+				
+				}
+				
+
+    stages {
+	
+		stage('Preparing ProjectAutomator file') {
+            steps {
+			    
+			    echo 'ProjectAutomator file updating..!'	
+				
+				script {
+					
+				
+					def text = readFile file: "${deployerScript_path}/ProjectAutomator_Jenkins1.xml"
+                    text = text.replaceAll("deployerHost", "${deployerHost}:${deployerPort}")
+					text = text.replaceAll("deployerUsername", "${deployerCreds_USR}")
+					text = text.replaceAll("deployerPassword", "${deployerCreds_PSW}")
+					text = text.replaceAll("RepoAlias", "RepoAlias_${wM_package}")
+					text = text.replaceAll("repoTargetPath", "${target_path}")
+					text = text.replaceAll("targetHost", "${targetHost}")
+					text = text.replaceAll("targetPort", "${targetPort}")
+					text = text.replaceAll("targetUsername", "${targetCreds_USR}")
+					text = text.replaceAll("targetPassword", "${targetCreds_PSW}")
+					text = text.replaceAll("targetUseSSL", "${UseSSLTargetIS}")
+					text = text.replaceAll("targetWMVersion", "${targetWMVersion}")
+					text = text.replaceAll("projectJenkins1", "projectJenkins_${BUILD_NUMBER}")
+                    writeFile file: "${workspace}/sample/ProjectAutomator_Jenkins1.xml", text: text
+                    
+				}
+                echo 'ProjectAutomator file updated'
+				
+            }
+        }
+		
+		stage('Creating deployer project') {
+            steps {
+				
+				// sh "${deployerScript_path}/projectAutomator.sh ${workspace}/sample/ProjectAutomator_Jenkins1.xml"
+				
+				bat "cmd /c ${deployerScript_path}/projectAutomator.bat ${workspace}/sample/ProjectAutomator_Jenkins1.xml"
+			
+                echo 'Project created in deployer'
+				
+            }
+        }
+		
+        stage('Simulation') {
+            steps {
+			
+				// sh "${deployerScript_path}/Deployer.sh --simulate -dc myDeployment -project projectJenkins_${BUILD_NUMBER} -host ${deployerHost} -port ${deployerPort} -user ${deployerCreds_USR} -pwd ${deployerCreds_PSW}"
+			
+				// bat "cmd /c ${deployerScript_path}/Deployer.bat --simulate -dc myDeployment -project projectJenkins_${BUILD_NUMBER} -configfile ${deployerScript_path}/userConfig.cnf"
+				
+				bat "cmd /c ${deployerScript_path}/Deployer.bat --simulate -dc myDeployment -project projectJenkins_${BUILD_NUMBER} -host ${deployerHost} -port ${deployerPort} -user ${deployerCreds_USR} -pwd ${deployerCreds_PSW} "
+				
+				echo 'Simulation completed'
+                
+                
+            }
+        }
+		
+		stage('Deployment') {
+            steps {
+			
+				// bat "cmd /c ${deployerScript_path}/Deployer.bat --deploy -dc myDeployment -project projectJenkins_${BUILD_NUMBER} -configfile ${deployerScript_path}/userConfig.cnf"
+				
+				 bat "cmd /c ${deployerScript_path}/Deployer.bat --deploy -dc myDeployment -project projectJenkins_${BUILD_NUMBER} -host ${deployerHost} -port ${deployerPort} -user ${deployerCreds_USR} -pwd ${deployerCreds_PSW}"
+				
+				echo 'Deployment completed'
+                
+                
+            }
+        }
+        
+    }
+	post {
+            always {
+                     /* clean up our workspace */
+                        deleteDir()
+                        
+                     /* clean up tmp directory */
+                    dir ("${workspace}@tmp") {
+                                deleteDir()
+					   }  
+                            
+					 dir ("${target_path}@tmp") {
+                                deleteDir()
+					   } 
+                                 
+                        }
+            } 
+}

@@ -1,0 +1,70 @@
+pipeline {
+    agent any
+	
+	parameters {
+				
+				string defaultValue: 'localhost', description: 'Provide the target host name', name: 'targetHost', trim: true
+				string defaultValue: '5557', description: 'Provide the target port number', name: 'targetPort', trim: true
+				string defaultValue: 'NMBuildTest', description: 'Provide the package name to be tested', name: 'scopePackage', trim: true
+				string defaultValue: 'C:/jenkins/UnitTest/WmtestSuiteExecutor1', description: 'Provide the test suite executor path', name: 'testSuiteExec_path', trim: true
+				string defaultValue: 'C:/jenkins/ABE', description: 'Provide wM test home path', name: 'wMTestHomePath', trim: true
+			}
+			
+    stages {
+        stage('Ant trigger Tests') {
+            steps {
+                withAnt(installation: 'Ant') {
+                    ws("${testSuiteExec_path}") {
+                        bat 'ant -f run-composite-runner.xml ' +
+                        "-DwebMethods.integrationServer.port=${targetPort} " +
+                        "-DwebMethods.integrationServer.name=${targetHost} " +
+                        "-DwebMethods.test.scope.packages=${scopePackage} " +
+                        "-DwebMethods.test.setup.location=${testSuiteExec_path}/test " +
+                        "-DwebMethods.test.profile.result.location=${testSuiteExec_path}/test/reports " +
+                        '-DwebMethods.test.setup.profile.mode=COVERAGE ' +
+                        "-DwebMethods.home=${wMTestHomePath} " +
+						'-DwebMethods.test.profile.result.includeExecutionModelReport=true ' +
+						'-DwebMethods.test.profile.result.includeServiceLevelReport=true ' +
+                        '-DwebMethods.test.setup.external.classpath.layout=\\"resources/test/classes,resources/java/classes,resources/test/jars,resources/java/jars,resources/jars\\"'
+                    }
+                }
+            }
+        }
+
+        stage('Publish Junit Reports') {
+            steps {
+                ws("${testSuiteExec_path}") {
+                    junit "/test/reports/TESTS-*.xml"
+                }
+            }
+        }
+
+        stage('Publish Junit HTML & Code Coverage Reports') {
+            steps {
+                ws("${testSuiteExec_path}") {
+                    publishHTML([
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: 'test/reports',
+                        reportFiles: 'html/index.html,wmcodecoverage/sag-utf-code-coverage.html',
+                        reportName: 'WmTestSuite Test Reports',
+                        reportTitles: 'Unit Test Report, Code Coverage Report'
+                    ])
+                }
+            }
+        }
+    }
+	post {
+            always {
+                   
+                        
+                     /* clean up tmp directory */
+                            
+					 dir ("${testSuiteExec_path}@tmp") {
+                                deleteDir()
+					   } 
+                                 
+                        }
+            } 
+}

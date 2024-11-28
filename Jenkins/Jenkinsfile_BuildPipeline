@@ -1,0 +1,107 @@
+ pipeline {
+    agent any
+    
+    parameters {
+                string defaultValue: 'C:/ProgramData/Jenkins/.jenkins/workspace/source', description: 'Provide the build source path', name: 'source_path', trim: true
+                string defaultValue: 'C:/jenkins/test/target', description: 'Provide the build source path', name: 'target_path', trim: true
+                string defaultValue: 'C:/jenkins/ABE/SoftwareAG1011Designer/common/AssetBuildEnvironment', description: 'Provide the AssetBuildEnvironment path', name: 'abe_path', trim: true
+                string defaultValue: '10.11', description: 'Provide the build version', name: 'buildVersion', trim: true
+				//Remove below parameters if you are not using git as VCS and add your VCS parameters here
+				string defaultValue: 'https://github.com/nivedmundiyath/NMWM_PackageRepo.git', description: 'Provide the git url', name: 'git_url', trim: true
+				string defaultValue: 'NM_git_cred', description: 'Provide the git credentialsId', name: 'git_credId', trim: true
+				string defaultValue: 'NMBuildTest', description: 'Provide the branch', name: 'git_branch', trim: true
+                }
+    
+    	
+
+    stages {
+		
+		
+        stage('Preparation') {
+            steps {
+				
+				//Remove below section if you are not using git as VCS and add your VCS details here
+			echo 'Getting package from GIT SCM'
+					
+					ws ("${params.source_path}"){
+					checkout scmGit(
+							branches: [[name: "${git_branch}"]],
+							userRemoteConfigs: [[credentialsId: "${git_credId}",
+							url: "${git_url}"]])
+					
+					}
+					
+			
+			
+			script {
+					
+					echo 'Updating build script file to correct path'
+					//def text = readFile file: "${abe_path}/bin/build.sh"
+					
+					def buildScript = readFile file: "${abe_path}/bin/build.bat"
+					
+					buildScript = buildScript.replaceAll("set BUILD_HOME_DIR=.*", "set BUILD_HOME_DIR=${abe_path}")
+					writeFile file: "${abe_path}/bin/build.bat", text: buildScript
+					
+					echo 'Updating setenv script file to correct path'
+					//def SetEnv = readFile file: "${abe_path}/../../install/bin/setenv.bat"
+					
+					def SetEnv = readFile file: "${abe_path}/../../install/bin/setenv.bat"
+
+					
+					SetEnv = SetEnv.replaceAll("SET JAVA_HOME=.*", "SET JAVA_HOME=${abe_path}/../../jvm/jvm")
+					SetEnv = SetEnv.replaceAll("SET JRE_HOME=.*", "SET JRE_HOME=${abe_path}/../../jvm/jvm")
+					writeFile file: "${abe_path}/../../install/bin/setenv.bat", text: SetEnv
+										
+					
+					echo 'Updating build.properties file'
+					
+					def text = readFile file: "${abe_path}/master_build/build.properties"
+                    text = text.replaceAll("build.output.dir.*", "build.output.dir=${target_path}")
+                    text = text.replaceAll("build.source.dir.*", "build.source.dir=${source_path}")
+                    text = text.replaceAll("build.source.project.dir.*", "build.source.project.dir=${source_path}")
+                    writeFile file: "${abe_path}/master_build/build.properties", text: text
+    
+			}
+				
+            }
+        }
+		
+		stage('Build') {
+            steps {
+				
+				// sh "${abe_path}/bin/build.sh" 
+				
+				bat "cmd /c ${abe_path}/bin/build.bat" 
+				
+				echo 'Build completed'
+            }
+        }
+		
+            
+
+    }
+    post {
+            always {
+                     /* clean up our workspace */
+                        deleteDir()
+                        
+                     /* clean up tmp directory */
+                    dir ("${workspace}@tmp") {
+                                deleteDir()
+					   }  
+                                    
+                    /* clean up tmp directory */
+                    dir ("${source_path}") {
+                                deleteDir()
+					   } 
+					   
+					  /* clean up tmp directory */
+                    dir ("${source_path}@tmp") {
+                                deleteDir()
+					   }  
+					
+                                 
+                        }
+            } 
+}

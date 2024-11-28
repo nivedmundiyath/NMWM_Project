@@ -69,5 +69,18 @@ def jsonData,WsDir
         }
         
     }
+	
+	post {
+            always {
+                   
+                        
+                     /* clean up tmp directory */
+                            
+					 dir ("${workspace}@tmp") {
+                                deleteDir()
+					   } 
+                                 
+                    }
+            } 
 
 }
