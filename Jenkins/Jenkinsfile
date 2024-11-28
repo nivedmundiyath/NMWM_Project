@@ -12,6 +12,13 @@ def jsonData
 			
 			
 			script{
+			
+				echo 'Workspace directory'
+				
+				def WsDir = "${workspace}"
+				WsDir = WsDir.replaceAll("\", "/")
+				
+				echo "${WsDir}"
 				
 				echo 'Getting customJenkinsParamaters ..'
 				
