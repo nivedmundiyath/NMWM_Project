@@ -1,4 +1,4 @@
-def jsonData
+def jsonData,WsDir
  
  pipeline {
     agent any
@@ -15,7 +15,7 @@ def jsonData
 			
 				echo 'Workspace directory'
 				
-				def WsDir = "${workspace}"
+				WsDir = "${workspace}"
 				WsDir = WsDir.replaceAll("\\\\", "/")
 				
 				echo "${WsDir}"
