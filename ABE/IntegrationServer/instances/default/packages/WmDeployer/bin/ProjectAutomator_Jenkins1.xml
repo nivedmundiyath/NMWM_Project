@@ -10,7 +10,7 @@
 			<repalias name="projectRepoJenkins1">
 				<type>FlatFile</type>
 				<urlOrDirectory>repoTargetPath</urlOrDirectory>
-				<createIndex>true</createIndex>
+				<createIndex>false</createIndex>
 				<Test>true</Test>
 			</repalias>
 		</Repository>
