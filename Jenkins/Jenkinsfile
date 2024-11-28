@@ -29,7 +29,7 @@ def jsonData
 			
 				echo 'Calling build pipeline..'
 				
-			 build job: 'NMBuildAutomationV2_build', parameters: [string(name: 'source_path', value: "${workspace}\\${jsonData.source_path}"), string(name: 'target_path', value: "${workspace}\\${jsonData.target_path}"),string(name: 'abe_path', value: "${workspace}\\${jsonData.abe_path}"), string(name: 'git_url', value: "${git_url}"), string(name: 'git_credId', value: "${jsonData.git_credId}"), string(name: 'git_branch', value: "${jsonData.git_branch}")]
+			 build job: 'NMBuildAutomationV2_build', parameters: [string(name: 'source_path', value: "${workspace}/${jsonData.source_path}"), string(name: 'target_path', value: "${workspace}/${jsonData.target_path}"),string(name: 'abe_path', value: "${workspace}/${jsonData.abe_path}"), string(name: 'git_url', value: "${git_url}"), string(name: 'git_credId', value: "${jsonData.git_credId}"), string(name: 'git_branch', value: "${jsonData.git_branch}")]
 			
 			// build job: 'NMBuildAutomationV2_build', parameters: [ string(name: 'git_url', value: "${git_url}"), string(name: 'git_credId', value: "${jsonData.git_credId}"), string(name: 'git_branch', value: "${jsonData.git_branch}")]
 				
@@ -41,7 +41,7 @@ def jsonData
 			
 				echo 'Calling deploy pipeline..'
 				
-			 build job: 'NMBuildAutomationV2_deploy', parameters: [string(name: 'deployerHost', value: "${jsonData.deployerHost}"), string(name: 'deployerPort', value: "${jsonData.deployerPort}"),string(name: 'targetHost', value: "${jsonData.targetHost}"), string(name: 'targetPort', value: "${jsonData.targetPort}"), string(name: 'targetWMVersion', value: "${jsonData.targetWMVersion}"), string(name: 'UseSSLTargetIS', value: "${jsonData.UseSSLTargetIS}"), string(name: 'target_path', value: "${workspace}\\${jsonData.target_path}"), string(name: 'deployerScript_path', value: "${workspace}\\${jsonData.deployerScript_path}")]
+			 build job: 'NMBuildAutomationV2_deploy', parameters: [string(name: 'deployerHost', value: "${jsonData.deployerHost}"), string(name: 'deployerPort', value: "${jsonData.deployerPort}"),string(name: 'targetHost', value: "${jsonData.targetHost}"), string(name: 'targetPort', value: "${jsonData.targetPort}"), string(name: 'targetWMVersion', value: "${jsonData.targetWMVersion}"), string(name: 'UseSSLTargetIS', value: "${jsonData.UseSSLTargetIS}"), string(name: 'target_path', value: "${workspace}/${jsonData.target_path}"), string(name: 'deployerScript_path', value: "${workspace}/${jsonData.deployerScript_path}")]
 			
 			// build job: 'NMBuildAutomationV2_deploy', parameters: [ string(name: 'deployerHost', value: "${jsonData.deployerHost}"), string(name: 'deployerPort', value: "${jsonData.deployerPort}"),string(name: 'targetHost', value: "${jsonData.targetHost}"), string(name: 'targetPort', value: "${jsonData.targetPort}"), string(name: 'targetWMVersion', value: "${jsonData.targetWMVersion}"), string(name: 'UseSSLTargetIS', value: "${jsonData.UseSSLTargetIS}")]
 			
@@ -53,7 +53,7 @@ def jsonData
 
 				echo 'Calling test pipeline..'
 				
-			  build job: 'NMBuildAutomationV2_test', parameters: [string(name: 'targetHost', value: "${jsonData.targetHost}"), string(name: 'targetPort', value: "${jsonData.targetPort}"),string(name: 'scopePackage', value: "${jsonData.wM_package}"), string(name: 'testSuiteExec_path', value: "${workspace}\\${jsonData.testSuiteExec_path}"), string(name: 'wMTestHomePath', value: "${workspace}\\${jsonData.wMTestHomePath}")]
+			  build job: 'NMBuildAutomationV2_test', parameters: [string(name: 'targetHost', value: "${jsonData.targetHost}"), string(name: 'targetPort', value: "${jsonData.targetPort}"),string(name: 'scopePackage', value: "${jsonData.wM_package}"), string(name: 'testSuiteExec_path', value: "${workspace}/${jsonData.testSuiteExec_path}"), string(name: 'wMTestHomePath', value: "${workspace}/${jsonData.wMTestHomePath}")]
 			 
 			 // build job: 'NMBuildAutomationV2_test', parameters: [ string(name: 'targetHost', value: "${jsonData.targetHost}"), string(name: 'targetPort', value: "${jsonData.targetPort}"),string(name: 'scopePackage', value: "${jsonData.wM_package}")]
 			 
