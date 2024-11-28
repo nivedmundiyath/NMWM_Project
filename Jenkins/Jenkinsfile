@@ -16,7 +16,7 @@ def jsonData
 				echo 'Workspace directory'
 				
 				def WsDir = "${workspace}"
-				WsDir = WsDir.replaceAll("\", "/")
+				WsDir = WsDir.replaceAll("\\", "/")
 				
 				echo "${WsDir}"
 				
