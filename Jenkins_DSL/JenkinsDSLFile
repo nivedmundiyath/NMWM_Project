@@ -1,0 +1,66 @@
+pipeline {
+    agent any
+    stages {
+        stage('Generate Jobs') {
+            steps {
+                jobDsl scriptText: '''
+                    
+					// Define unique configurations for each pipeline job
+							def pipelineJobs = [
+								[
+									name: 'NMBuildAutomationV3_main',
+									description: 'Main Pipeline job',
+									repoUrl: 'https://github.com/nivedmundiyath/NMWM_Project.git',
+									branch: '*/NMJenkins',
+									scriptPath: 'Jenkins/Jenkinsfile',
+								],
+								[
+									name: 'NMBuildAutomationV3_build',
+									description: 'Build Pipeline job',
+									repoUrl: 'https://github.com/nivedmundiyath/NMWM_Project.git',
+									branch: '*/NMJenkins',
+									scriptPath: 'Jenkins/Jenkinsfile_BuildPipeline',
+								],
+								[
+									name: 'NMBuildAutomationV3_deploy',
+									description: 'Depoly Pipeline job',
+									repoUrl: 'https://github.com/nivedmundiyath/NMWM_Project.git',
+									branch: '*/NMJenkins',
+									scriptPath: 'Jenkins/Jenkinsfile_DeployPipeline',
+								],
+								[
+									name: 'NMBuildAutomationV3_test',
+									description: 'Depoly Pipeline job',
+									repoUrl: 'https://github.com/nivedmundiyath/NMWM_Project.git',
+									branch: '*/NMJenkins',
+									scriptPath: 'Jenkins/Jenkinsfile_TestPipeline',
+								]
+							]
+
+							// Loop through the list and create a pipeline job for each configuration
+							pipelineJobs.each { jobConfig ->
+								pipelineJob(jobConfig.name) {
+									description(jobConfig.description)
+									definition {
+										cpsScm {
+											scm {
+												git {
+													remote {
+														url(jobConfig.repoUrl) // Unique Git repository
+													}
+													branch(jobConfig.branch) // Unique branch
+												}
+											}
+											scriptPath(jobConfig.scriptPath) // Unique Jenkinsfile path
+										}
+									}
+									
+								}
+							}
+					
+                '''
+				// End 
+            }
+        }
+    }
+}
