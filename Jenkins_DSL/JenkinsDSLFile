@@ -11,6 +11,7 @@ pipeline {
 									name: 'NMBuildAutomationV3_main',
 									description: 'Main Pipeline job',
 									repoUrl: 'https://github.com/nivedmundiyath/NMWM_Project.git',
+									repoCred: 'NM_git_cred',
 									branch: '*/NMJenkins',
 									scriptPath: 'Jenkins/Jenkinsfile',
 								],
@@ -18,6 +19,7 @@ pipeline {
 									name: 'NMBuildAutomationV3_build',
 									description: 'Build Pipeline job',
 									repoUrl: 'https://github.com/nivedmundiyath/NMWM_Project.git',
+									repoCred: 'NM_git_cred',
 									branch: '*/NMJenkins',
 									scriptPath: 'Jenkins/Jenkinsfile_BuildPipeline',
 								],
@@ -25,6 +27,7 @@ pipeline {
 									name: 'NMBuildAutomationV3_deploy',
 									description: 'Depoly Pipeline job',
 									repoUrl: 'https://github.com/nivedmundiyath/NMWM_Project.git',
+									repoCred: 'NM_git_cred',
 									branch: '*/NMJenkins',
 									scriptPath: 'Jenkins/Jenkinsfile_DeployPipeline',
 								],
@@ -32,6 +35,7 @@ pipeline {
 									name: 'NMBuildAutomationV3_test',
 									description: 'Depoly Pipeline job',
 									repoUrl: 'https://github.com/nivedmundiyath/NMWM_Project.git',
+									repoCred: 'NM_git_cred',
 									branch: '*/NMJenkins',
 									scriptPath: 'Jenkins/Jenkinsfile_TestPipeline',
 								]
@@ -47,6 +51,7 @@ pipeline {
 												git {
 													remote {
 														url(jobConfig.repoUrl) // Unique Git repository
+														credentials(jobConfig.NM_git_cred)
 													}
 													branch(jobConfig.branch) // Unique branch
 												}
