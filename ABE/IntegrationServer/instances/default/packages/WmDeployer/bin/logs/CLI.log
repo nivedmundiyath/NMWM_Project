@@ -1,0 +1,1170 @@
+[DEBUG] [10 Nov 2024 05:29:09,523] (ParseDeployerParams.java:parse:74)
+[Deployer] Entering parse(String[] args) Method
+
+[ INFO] [10 Nov 2024 05:29:09,538] (ParseDeployerParams.java:parse:1745)
+[[DEP.0100.5.56] Operation] [DEP.0100.5.51] Import
+
+[DEBUG] [10 Nov 2024 05:29:09,539] (ParseDeployerParams.java:validateCommandLineParametersForAction:2575)
+[Deployer] Entering validateCommandLineParametersForAction(Args arg,	CommandLineParser parser)
+
+[DEBUG] [10 Nov 2024 05:29:09,539] (ParseDeployerParams.java:validateCommandLineParametersForAction:2601)
+[Deployer]Config file specified
+
+[DEBUG] [10 Nov 2024 05:29:09,547] (ParseDeployerParams.java:validateCommandLineParametersForAction:2659)
+[Deployer][ConfigFileParam] Key = port Value=5557  
+
+[DEBUG] [10 Nov 2024 05:29:09,548] (ParseDeployerParams.java:validateCommandLineParametersForAction:2651)
+[Deployer][ConfigFileParam] Key = host Value=localhost  
+
+[DEBUG] [10 Nov 2024 05:29:09,548] (ParseDeployerParams.java:validateCommandLineParametersForAction:2627)
+[Deployer][ConfigFileParam] Key = pwd.Password is present but not shown.
+
+[ INFO] [10 Nov 2024 05:29:10,684] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[ INFO] [10 Nov 2024 05:29:10,702] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[DEBUG] [10 Nov 2024 05:29:10,720] (ParseDeployerParams.java:validateCommandLineParametersForAction:2619)
+[Deployer][ConfigFileParam] Key = user Value=Administrator  
+
+[DEBUG] [10 Nov 2024 05:29:10,721] (ParseDeployerParams.java:validateCommandLineParametersForAction:2886)
+[Deployer] [Param Authentication] 
+
+[DEBUG] [10 Nov 2024 05:29:10,722] (ParseDeployerParams.java:validateCommandLineParametersForAction:2889)
+[Deployer] [Config File Parameters]isUserSpecifiedinConfigFile = true
+
+[DEBUG] [10 Nov 2024 05:29:10,722] (ParseDeployerParams.java:validateCommandLineParametersForAction:2892)
+[Deployer] [Config File Parameters]isPasswordSpecifiedinConfigFile = true
+
+[DEBUG] [10 Nov 2024 05:29:10,732] (ParseDeployerParams.java:validateCommandLineParametersForAction:2894)
+[Deployer] Operation invoked by User Administrator   on Deployer localhost:5557  
+
+[DEBUG] [10 Nov 2024 05:29:10,732] (ParseDeployerParams.java:printParamMap:5183)
+[Deployer][ParamMap] Key = port Value = 5557  
+
+[DEBUG] [10 Nov 2024 05:29:10,733] (ParseDeployerParams.java:printParamMap:5183)
+[Deployer][ParamMap] Key = host Value = localhost  
+
+[DEBUG] [10 Nov 2024 05:29:10,733] (ParseDeployerParams.java:printParamMap:5183)
+[Deployer][ParamMap] Key = action Value = import
+
+[DEBUG] [10 Nov 2024 05:29:10,733] (ParseDeployerParams.java:printParamMap:5180)
+[Deployer][ParamMap] Key = pwd.Value present but not shown.
+
+[DEBUG] [10 Nov 2024 05:29:10,734] (ParseDeployerParams.java:printParamMap:5183)
+[Deployer][ParamMap] Key = user Value = Administrator  
+
+[ INFO] [10 Nov 2024 05:29:10,734] (ParseDeployerParams.java:validateCommandLineParametersForAction:4597)
+[[DEP.0100.5.56] Operation] [DEP.0100.5.18] Import Build
+
+[DEBUG] [10 Nov 2024 05:29:10,735] (ParseDeployerParams.java:validateCommandLineParametersForAction:5150)
+[Deployer] Exiting validateCommandLineParametersForAction(Args arg,	CommandLineParser parser)
+
+[DEBUG] [10 Nov 2024 05:29:10,742] (DeployerServiceUtils.java:importAction:564)
+[Deployer] Entering importAction(HashMap paramMap) Method
+
+[DEBUG] [10 Nov 2024 05:29:10,743] (DeployerServiceUtils.java:importAction:567)
+[Deployer] Invoking Service wm.deployer.gui.UIReplicate.importBuild on Deployer localhost:5557  
+
+[DEBUG] [10 Nov 2024 05:29:10,743] (DeployerServiceUtils.java:importAction:573)
+[Deployer] Service invoked by User Administrator  
+
+[DEBUG] [10 Nov 2024 05:29:10,744] (DeployerServiceUtils.java:importAction:575)
+[Deployer] Parameters to the service 
+
+[DEBUG] [10 Nov 2024 05:29:10,748] (DeployerServiceUtils.java:importAction:587)
+[Deployer] 	buildName = C:\SoftwareAG1011Designer\build\test\1
+
+[DEBUG] [10 Nov 2024 05:29:10,749] (DeployerServiceUtils.java:executeService:1484)
+[Deployer] Entering executeService(String server, String user, String pwd, String packageStr, String service,IData inputDocument) Method
+
+[DEBUG] [10 Nov 2024 05:29:10,772] (DeployerServiceUtils.java:executeService:1535)
+[Deployer] Initiating connection Secure Socket Layer = false
+
+[DEBUG] [10 Nov 2024 05:29:10,838] (DeployerServiceUtils.java:executeService:1537)
+[Deployer] Connection Established Secure Socket Layer = false
+
+[DEBUG] [10 Nov 2024 05:29:10,839] (DeployerServiceUtils.java:executeService:1539)
+[Deployer] Executing Service wm.deployer.gui.UIReplicate:importBuild Secure Socket Layer = false
+
+[DEBUG] [10 Nov 2024 05:29:10,874] (DeployerServiceUtils.java:executeService:1541)
+[Deployer] Completed Executing Service wm.deployer.gui.UIReplicate:importBuild Secure Socket Layer = false
+
+[DEBUG] [10 Nov 2024 05:29:10,880] (DeployerServiceUtils.java:executeService:1577)
+[Deployer] Exiting executeService(String server, String user, String pwd, String packageStr, String service,IData inputDocument) Method
+
+[DEBUG] [10 Nov 2024 05:29:10,881] (DeployerServiceUtils.java:importAction:617)
+[Deployer Service Status] Stature returned with status error
+
+[DEBUG] [10 Nov 2024 05:29:10,881] (DeployerServiceUtils.java:importAction:621)
+[Deployer Service Status] Message = [DEP.0002.0059] The Deployer import map file C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\replicate\inbound\C:\SoftwareAG1011Designer\build\test\1 is not accessible or does not exist.
+
+[DEBUG] [10 Nov 2024 05:29:10,882] (DeployerServiceUtils.java:importAction:651)
+[Deployer] Exiting importAction(HashMap paramMap) Method
+
+[DEBUG] [10 Nov 2024 05:29:10,882] (ParseDeployerParams.java:addStatusRecordToReport:5157)
+[Deployer] Entering addStatusRecordToReport(int errorCode, String message, boolean isUsageRecord) Method
+
+[DEBUG] [10 Nov 2024 05:29:10,884] (ParseDeployerParams.java:addStatusRecordToReport:5168)
+[Deployer] Exiting addStatusRecordToReport(int errorCode, String message, boolean isUsageRecord) Method
+
+[ INFO] [10 Nov 2024 05:29:10,885] (ParseDeployerParams.java:parse:1768)
+[[DEP.0100.4.01] Error -999][DEP.0100.-999] Service Error [DEP.0002.0059] The Deployer import map file C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\replicate\inbound\C:\SoftwareAG1011Designer\build\test\1 is not accessible or does not exist.
+
+[ INFO] [10 Nov 2024 05:49:52,824] (MainClass.java:main:168)
+No of command line arguments = 4
+
+[ INFO] [10 Nov 2024 05:49:52,827] (MainClass.java:main:170)
+Argument 0 = C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo1.xml
+
+[ INFO] [10 Nov 2024 05:49:52,827] (MainClass.java:main:170)
+Argument 1 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRuntime.xsd
+
+[ INFO] [10 Nov 2024 05:49:52,827] (MainClass.java:main:170)
+Argument 2 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRepository.xsd
+
+[ INFO] [10 Nov 2024 05:49:52,828] (MainClass.java:main:170)
+Argument 3 = 1
+
+[ INFO] [10 Nov 2024 05:49:52,833] (MainClass.java:main:198)
+Operating System on which ProjectAutomator is running is a WINDOWS or a WINDOWS Variant
+
+[ INFO] [10 Nov 2024 05:49:52,834] (MainClass.java:main:212)
+Path to XML project definition file : C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo1.xml
+
+[ INFO] [10 Nov 2024 05:49:52,838] (MainClass.java:<init>:46)
+Started Operation of Deployer Test Suite
+
+[ERROR] [10 Nov 2024 05:49:52,994] (MainClass.java:validateXMLWithSchema:156)
+Error validating XML with schema. Exception thrown cvc-complex-type.2.4.a: Invalid content was found starting with element 'createIndex'. One of '{user}' is expected.
+
+[ INFO] [10 Nov 2024 05:50:31,141] (MainClass.java:main:168)
+No of command line arguments = 4
+
+[ INFO] [10 Nov 2024 05:50:31,144] (MainClass.java:main:170)
+Argument 0 = C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo1.xml
+
+[ INFO] [10 Nov 2024 05:50:31,145] (MainClass.java:main:170)
+Argument 1 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRuntime.xsd
+
+[ INFO] [10 Nov 2024 05:50:31,145] (MainClass.java:main:170)
+Argument 2 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRepository.xsd
+
+[ INFO] [10 Nov 2024 05:50:31,146] (MainClass.java:main:170)
+Argument 3 = 1
+
+[ INFO] [10 Nov 2024 05:50:31,149] (MainClass.java:main:198)
+Operating System on which ProjectAutomator is running is a WINDOWS or a WINDOWS Variant
+
+[ INFO] [10 Nov 2024 05:50:31,149] (MainClass.java:main:212)
+Path to XML project definition file : C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo1.xml
+
+[ INFO] [10 Nov 2024 05:50:31,154] (MainClass.java:<init>:46)
+Started Operation of Deployer Test Suite
+
+[ERROR] [10 Nov 2024 05:50:31,292] (MainClass.java:validateXMLWithSchema:156)
+Error validating XML with schema. Exception thrown cvc-complex-type.2.4.a: Invalid content was found starting with element 'createIndex'. One of '{user}' is expected.
+
+[ INFO] [10 Nov 2024 05:51:49,030] (MainClass.java:main:168)
+No of command line arguments = 4
+
+[ INFO] [10 Nov 2024 05:51:49,032] (MainClass.java:main:170)
+Argument 0 = C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo1.xml
+
+[ INFO] [10 Nov 2024 05:51:49,032] (MainClass.java:main:170)
+Argument 1 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRuntime.xsd
+
+[ INFO] [10 Nov 2024 05:51:49,034] (MainClass.java:main:170)
+Argument 2 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRepository.xsd
+
+[ INFO] [10 Nov 2024 05:51:49,034] (MainClass.java:main:170)
+Argument 3 = 1
+
+[ INFO] [10 Nov 2024 05:51:49,037] (MainClass.java:main:198)
+Operating System on which ProjectAutomator is running is a WINDOWS or a WINDOWS Variant
+
+[ INFO] [10 Nov 2024 05:51:49,037] (MainClass.java:main:212)
+Path to XML project definition file : C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo1.xml
+
+[ INFO] [10 Nov 2024 05:51:49,041] (MainClass.java:<init>:46)
+Started Operation of Deployer Test Suite
+
+[ERROR] [10 Nov 2024 05:51:49,162] (MainClass.java:validateXMLWithSchema:156)
+Error validating XML with schema. Exception thrown cvc-complex-type.2.4.a: Invalid content was found starting with element 'createIndex'. One of '{user}' is expected.
+
+[ INFO] [10 Nov 2024 05:53:46,093] (MainClass.java:main:168)
+No of command line arguments = 4
+
+[ INFO] [10 Nov 2024 05:53:46,095] (MainClass.java:main:170)
+Argument 0 = C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo1.xml
+
+[ INFO] [10 Nov 2024 05:53:46,096] (MainClass.java:main:170)
+Argument 1 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRuntime.xsd
+
+[ INFO] [10 Nov 2024 05:53:46,096] (MainClass.java:main:170)
+Argument 2 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRepository.xsd
+
+[ INFO] [10 Nov 2024 05:53:46,096] (MainClass.java:main:170)
+Argument 3 = 1
+
+[ INFO] [10 Nov 2024 05:53:46,099] (MainClass.java:main:198)
+Operating System on which ProjectAutomator is running is a WINDOWS or a WINDOWS Variant
+
+[ INFO] [10 Nov 2024 05:53:46,100] (MainClass.java:main:212)
+Path to XML project definition file : C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo1.xml
+
+[ INFO] [10 Nov 2024 05:53:46,104] (MainClass.java:<init>:46)
+Started Operation of Deployer Test Suite
+
+[ERROR] [10 Nov 2024 05:53:46,222] (MainClass.java:validateXMLWithSchema:156)
+Error validating XML with schema. Exception thrown cvc-complex-type.2.4.a: Invalid content was found starting with element 'createIndex'. One of '{user}' is expected.
+
+[ INFO] [10 Nov 2024 05:59:21,581] (MainClass.java:main:168)
+No of command line arguments = 4
+
+[ INFO] [10 Nov 2024 05:59:21,583] (MainClass.java:main:170)
+Argument 0 = C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo1.xml
+
+[ INFO] [10 Nov 2024 05:59:21,584] (MainClass.java:main:170)
+Argument 1 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRuntime.xsd
+
+[ INFO] [10 Nov 2024 05:59:21,585] (MainClass.java:main:170)
+Argument 2 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRepository.xsd
+
+[ INFO] [10 Nov 2024 05:59:21,585] (MainClass.java:main:170)
+Argument 3 = 1
+
+[ INFO] [10 Nov 2024 05:59:21,588] (MainClass.java:main:198)
+Operating System on which ProjectAutomator is running is a WINDOWS or a WINDOWS Variant
+
+[ INFO] [10 Nov 2024 05:59:21,589] (MainClass.java:main:212)
+Path to XML project definition file : C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo1.xml
+
+[ INFO] [10 Nov 2024 05:59:21,598] (MainClass.java:<init>:46)
+Started Operation of Deployer Test Suite
+
+[ERROR] [10 Nov 2024 05:59:21,742] (MainClass.java:validateXMLWithSchema:156)
+Error validating XML with schema. Exception thrown cvc-complex-type.2.4.a: Invalid content was found starting with element 'Repository'. One of '{Environment, Projects}' is expected.
+
+[ INFO] [10 Nov 2024 05:59:58,122] (MainClass.java:main:168)
+No of command line arguments = 4
+
+[ INFO] [10 Nov 2024 05:59:58,124] (MainClass.java:main:170)
+Argument 0 = C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo1.xml
+
+[ INFO] [10 Nov 2024 05:59:58,124] (MainClass.java:main:170)
+Argument 1 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRuntime.xsd
+
+[ INFO] [10 Nov 2024 05:59:58,124] (MainClass.java:main:170)
+Argument 2 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRepository.xsd
+
+[ INFO] [10 Nov 2024 05:59:58,125] (MainClass.java:main:170)
+Argument 3 = 1
+
+[ INFO] [10 Nov 2024 05:59:58,128] (MainClass.java:main:198)
+Operating System on which ProjectAutomator is running is a WINDOWS or a WINDOWS Variant
+
+[ INFO] [10 Nov 2024 05:59:58,128] (MainClass.java:main:212)
+Path to XML project definition file : C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo1.xml
+
+[ INFO] [10 Nov 2024 05:59:58,132] (MainClass.java:<init>:46)
+Started Operation of Deployer Test Suite
+
+[ERROR] [10 Nov 2024 05:59:58,263] (MainClass.java:validateXMLWithSchema:156)
+Error validating XML with schema. Exception thrown cvc-complex-type.2.4.b: The content of element 'DeployerSpec' is not complete. One of '{Projects}' is expected.
+
+[ INFO] [10 Nov 2024 06:03:22,136] (MainClass.java:main:168)
+No of command line arguments = 4
+
+[ INFO] [10 Nov 2024 06:03:22,138] (MainClass.java:main:170)
+Argument 0 = C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo1.xml
+
+[ INFO] [10 Nov 2024 06:03:22,138] (MainClass.java:main:170)
+Argument 1 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRuntime.xsd
+
+[ INFO] [10 Nov 2024 06:03:22,139] (MainClass.java:main:170)
+Argument 2 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRepository.xsd
+
+[ INFO] [10 Nov 2024 06:03:22,139] (MainClass.java:main:170)
+Argument 3 = 1
+
+[ INFO] [10 Nov 2024 06:03:22,142] (MainClass.java:main:198)
+Operating System on which ProjectAutomator is running is a WINDOWS or a WINDOWS Variant
+
+[ INFO] [10 Nov 2024 06:03:22,142] (MainClass.java:main:212)
+Path to XML project definition file : C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo1.xml
+
+[ INFO] [10 Nov 2024 06:03:22,146] (MainClass.java:<init>:46)
+Started Operation of Deployer Test Suite
+
+[ INFO] [10 Nov 2024 06:03:23,283] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[ INFO] [10 Nov 2024 06:03:23,301] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[ INFO] [10 Nov 2024 06:03:23,326] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[ INFO] [10 Nov 2024 06:03:23,339] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[ INFO] [10 Nov 2024 06:03:23,497] (ProjectPlanExecutorXMLParser.java:getDeployerServerDetails:467)
+Using WmDeployer package on the Server localhost:5557 configured with the user Administrator
+
+[DEBUG] [10 Nov 2024 06:03:23,499] (ServerAlias.java:doesServerAliasExist:92)
+Checking if the  Server Alias projectAutoRepoAlias1 of pluginType Repository exists.
+
+[DEBUG] [10 Nov 2024 06:03:23,513] (DeployerUtil.java:createRepositoryServerAliases:1326)
+Creating Repository Server Alias : aliasName = projectAutoRepoAlias1
+
+[ INFO] [10 Nov 2024 06:03:23,531] (DeployerUtil.java:createRepositoryServerAliases:1328)
+Created Repository Server Alias Alias : aliasName = projectAutoRepoAlias1
+
+[DEBUG] [10 Nov 2024 06:03:23,531] (DeployerUtil.java:createRepositoryServerAliases:1330)
+Creating Repository Indexes : aliasName = projectAutoRepoAlias1
+
+[ INFO] [10 Nov 2024 06:03:23,750] (DeployerUtil.java:createRepositoryServerAliases:1332)
+Created Repository Indexes : aliasName = projectAutoRepoAlias1
+
+[DEBUG] [10 Nov 2024 06:03:23,757] (ServerAlias.java:doesServerAliasExist:92)
+Checking if the  Server Alias local of pluginType IS&TN exists.
+
+[DEBUG] [10 Nov 2024 06:03:23,770] (DeployerUtil.java:createISServerAliases:214)
+Deleting IS Alias : aliasName = local@SAG-48GFBS3:5557
+
+[ INFO] [10 Nov 2024 06:03:23,827] (DeployerUtil.java:createISServerAliases:217)
+Deleted IS Alias : aliasName = local@SAG-48GFBS3:5557
+
+[DEBUG] [10 Nov 2024 06:03:23,830] (DeployerUtil.java:createISServerAliases:220)
+Creating IS Alias : aliasName = local@SAG-48GFBS3:5557 with the user Administrator
+
+[ INFO] [10 Nov 2024 06:03:23,922] (DeployerUtil.java:createISServerAliases:242)
+Created IS Alias : aliasName = local@SAG-48GFBS3:5557 with the user Administrator
+
+[ INFO] [10 Nov 2024 06:03:23,941] (RepoAssetUtil.java:getRepositoryComposite:288)
+Adding asset isconfiguration from srcAlias=projectAutoRepoAlias1 to Deployment Set Source
+
+[DEBUG] [10 Nov 2024 06:03:23,942] (RepoAssetUtil.java:getRepositoryComposite:291)
+projectAutoRepoAlias1$IS$isconfiguration$COMPOSITE_INCL
+
+[ INFO] [10 Nov 2024 06:03:23,946] (RepoAssetUtil.java:getRepositoryComposite:288)
+Adding asset NMBuildTest from srcAlias=projectAutoRepoAlias1 to Deployment Set Source
+
+[DEBUG] [10 Nov 2024 06:03:23,946] (RepoAssetUtil.java:getRepositoryComposite:291)
+projectAutoRepoAlias1$IS$NMBuildTest$COMPOSITE_INCL
+
+[DEBUG] [10 Nov 2024 06:03:23,948] (ProjectPlanExecutorXMLParser.java:getProjectDetails:627)
+Deleting Project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:03:23,952] (ProjectPlanExecutorXMLParser.java:getProjectDetails:632)
+Creating Project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:03:24,099] (ProjectPlanExecutorXMLParser.java:getProjectDetails:634)
+Created Project projectAutoRepoDep1
+
+[DEBUG] [10 Nov 2024 06:03:24,099] (DeploymentSet.java:create:190)
+Creating Deployment Set Source of type Repository for project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:03:24,138] (DeploymentSet.java:create:219)
+Created Deployment Set Source of type Repository for project projectAutoRepoDep1
+
+[DEBUG] [10 Nov 2024 06:03:24,138] (DeploymentSet.java:updateSourceServerAliasToSets:389)
+Updating Source Server Aliases on Deployment Set Source of type Repository for project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:03:24,230] (DeploymentSet.java:updateSourceServerAliasToSets:434)
+Updated Source Server Aliases on Deployment Set Source of type Repository for project projectAutoRepoDep1
+
+[DEBUG] [10 Nov 2024 06:03:24,230] (DeploymentSet.java:addRepoCompositesToDeploymentSet:2867)
+Adding Repository Objects to Deployment Set Source of type Repository for project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:03:24,407] (DeploymentSet.java:addRepoCompositesToDeploymentSet:2896)
+Added Repository Objects to Deployment Set Source of type Repository for project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:03:24,595] (DeploymentMap.java:create:70)
+Creating Deployment Map Destination in Project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:03:24,632] (DeploymentMap.java:create:90)
+Successfully created Deployment Map Destination in Project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:03:24,677] (DeploymentCandidate.java:create:87)
+Creating Deployment Candidate myDeployment with Deployment Map Destination for project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:03:24,711] (DeploymentCandidate.java:create:115)
+Successfully created Deployment Candidate myDeployment with Deployment Map Destination for project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:03:24,800] (XMLReport.java:runExample:41)
+Started Generating Report ... 
+
+[ INFO] [10 Nov 2024 06:03:24,801] (XMLReport.java:createDOMTree:88)
+Info Messages Size = 16
+
+[ INFO] [10 Nov 2024 06:03:24,801] (XMLReport.java:createDOMTree:89)
+Error Messages Size = 0
+
+[ INFO] [10 Nov 2024 06:03:24,814] (XMLReport.java:runExample:44)
+Generated Automation Test Suite Report file successfully.
+
+[ INFO] [10 Nov 2024 06:05:14,727] (MainClass.java:main:168)
+No of command line arguments = 4
+
+[ INFO] [10 Nov 2024 06:05:14,730] (MainClass.java:main:170)
+Argument 0 = C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo1.xml
+
+[ INFO] [10 Nov 2024 06:05:14,730] (MainClass.java:main:170)
+Argument 1 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRuntime.xsd
+
+[ INFO] [10 Nov 2024 06:05:14,731] (MainClass.java:main:170)
+Argument 2 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRepository.xsd
+
+[ INFO] [10 Nov 2024 06:05:14,731] (MainClass.java:main:170)
+Argument 3 = 1
+
+[ INFO] [10 Nov 2024 06:05:14,734] (MainClass.java:main:198)
+Operating System on which ProjectAutomator is running is a WINDOWS or a WINDOWS Variant
+
+[ INFO] [10 Nov 2024 06:05:14,734] (MainClass.java:main:212)
+Path to XML project definition file : C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo1.xml
+
+[ INFO] [10 Nov 2024 06:05:14,739] (MainClass.java:<init>:46)
+Started Operation of Deployer Test Suite
+
+[ INFO] [10 Nov 2024 06:05:15,806] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[ INFO] [10 Nov 2024 06:05:15,830] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[ INFO] [10 Nov 2024 06:05:15,968] (ProjectPlanExecutorXMLParser.java:getDeployerServerDetails:467)
+Using WmDeployer package on the Server localhost:5557 configured with the user Administrator
+
+[DEBUG] [10 Nov 2024 06:05:15,970] (ServerAlias.java:doesServerAliasExist:92)
+Checking if the  Server Alias projectAutoRepoAlias1 of pluginType Repository exists.
+
+[DEBUG] [10 Nov 2024 06:05:15,974] (DeployerUtil.java:createRepositoryServerAliases:1322)
+Deleting Repository Server Alias projectAutoRepoAlias1
+
+[ INFO] [10 Nov 2024 06:05:15,980] (DeployerUtil.java:createRepositoryServerAliases:1324)
+Deleted Repository Server Alias projectAutoRepoAlias1
+
+[DEBUG] [10 Nov 2024 06:05:15,980] (DeployerUtil.java:createRepositoryServerAliases:1326)
+Creating Repository Server Alias : aliasName = projectAutoRepoAlias1
+
+[ INFO] [10 Nov 2024 06:05:15,995] (DeployerUtil.java:createRepositoryServerAliases:1328)
+Created Repository Server Alias Alias : aliasName = projectAutoRepoAlias1
+
+[DEBUG] [10 Nov 2024 06:05:15,996] (DeployerUtil.java:createRepositoryServerAliases:1330)
+Creating Repository Indexes : aliasName = projectAutoRepoAlias1
+
+[ INFO] [10 Nov 2024 06:05:16,040] (DeployerUtil.java:createRepositoryServerAliases:1332)
+Created Repository Indexes : aliasName = projectAutoRepoAlias1
+
+[ INFO] [10 Nov 2024 06:05:16,060] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[ INFO] [10 Nov 2024 06:05:16,070] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[DEBUG] [10 Nov 2024 06:05:16,074] (ServerAlias.java:doesServerAliasExist:92)
+Checking if the  Server Alias local of pluginType IS&TN exists.
+
+[DEBUG] [10 Nov 2024 06:05:16,077] (DeployerUtil.java:createISServerAliases:214)
+Deleting IS Alias : aliasName = local@SAG-48GFBS3:5557
+
+[ INFO] [10 Nov 2024 06:05:16,094] (DeployerUtil.java:createISServerAliases:217)
+Deleted IS Alias : aliasName = local@SAG-48GFBS3:5557
+
+[DEBUG] [10 Nov 2024 06:05:16,095] (DeployerUtil.java:createISServerAliases:220)
+Creating IS Alias : aliasName = local@SAG-48GFBS3:5557 with the user Administrator
+
+[ INFO] [10 Nov 2024 06:05:16,129] (DeployerUtil.java:createISServerAliases:242)
+Created IS Alias : aliasName = local@SAG-48GFBS3:5557 with the user Administrator
+
+[ERROR] [10 Nov 2024 06:05:16,139] (ProjectPlanExecutorXMLParser.java:getProjectDetails:537)
+Error creating Project projectAutoRepoDep1 as the project already exits.
+
+[ INFO] [10 Nov 2024 06:05:16,140] (XMLReport.java:runExample:41)
+Started Generating Report ... 
+
+[ INFO] [10 Nov 2024 06:05:16,140] (XMLReport.java:createDOMTree:88)
+Info Messages Size = 9
+
+[ INFO] [10 Nov 2024 06:05:16,141] (XMLReport.java:createDOMTree:89)
+Error Messages Size = 1
+
+[ INFO] [10 Nov 2024 06:05:16,149] (XMLReport.java:runExample:44)
+Generated Automation Test Suite Report file successfully.
+
+[ INFO] [10 Nov 2024 06:05:27,583] (MainClass.java:main:168)
+No of command line arguments = 4
+
+[ INFO] [10 Nov 2024 06:05:27,585] (MainClass.java:main:170)
+Argument 0 = C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo1.xml
+
+[ INFO] [10 Nov 2024 06:05:27,585] (MainClass.java:main:170)
+Argument 1 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRuntime.xsd
+
+[ INFO] [10 Nov 2024 06:05:27,586] (MainClass.java:main:170)
+Argument 2 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRepository.xsd
+
+[ INFO] [10 Nov 2024 06:05:27,586] (MainClass.java:main:170)
+Argument 3 = 1
+
+[ INFO] [10 Nov 2024 06:05:27,589] (MainClass.java:main:198)
+Operating System on which ProjectAutomator is running is a WINDOWS or a WINDOWS Variant
+
+[ INFO] [10 Nov 2024 06:05:27,589] (MainClass.java:main:212)
+Path to XML project definition file : C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo1.xml
+
+[ INFO] [10 Nov 2024 06:05:27,593] (MainClass.java:<init>:46)
+Started Operation of Deployer Test Suite
+
+[ INFO] [10 Nov 2024 06:05:28,635] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[ INFO] [10 Nov 2024 06:05:28,651] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[ INFO] [10 Nov 2024 06:05:28,804] (ProjectPlanExecutorXMLParser.java:getDeployerServerDetails:467)
+Using WmDeployer package on the Server localhost:5557 configured with the user Administrator
+
+[DEBUG] [10 Nov 2024 06:05:28,805] (ServerAlias.java:doesServerAliasExist:92)
+Checking if the  Server Alias projectAutoRepoAlias1 of pluginType Repository exists.
+
+[DEBUG] [10 Nov 2024 06:05:28,810] (DeployerUtil.java:createRepositoryServerAliases:1322)
+Deleting Repository Server Alias projectAutoRepoAlias1
+
+[ INFO] [10 Nov 2024 06:05:28,814] (DeployerUtil.java:createRepositoryServerAliases:1324)
+Deleted Repository Server Alias projectAutoRepoAlias1
+
+[DEBUG] [10 Nov 2024 06:05:28,814] (DeployerUtil.java:createRepositoryServerAliases:1326)
+Creating Repository Server Alias : aliasName = projectAutoRepoAlias1
+
+[ INFO] [10 Nov 2024 06:05:28,826] (DeployerUtil.java:createRepositoryServerAliases:1328)
+Created Repository Server Alias Alias : aliasName = projectAutoRepoAlias1
+
+[DEBUG] [10 Nov 2024 06:05:28,827] (DeployerUtil.java:createRepositoryServerAliases:1330)
+Creating Repository Indexes : aliasName = projectAutoRepoAlias1
+
+[ INFO] [10 Nov 2024 06:05:28,872] (DeployerUtil.java:createRepositoryServerAliases:1332)
+Created Repository Indexes : aliasName = projectAutoRepoAlias1
+
+[ INFO] [10 Nov 2024 06:05:28,890] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[ INFO] [10 Nov 2024 06:05:28,904] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[DEBUG] [10 Nov 2024 06:05:28,906] (ServerAlias.java:doesServerAliasExist:92)
+Checking if the  Server Alias local of pluginType IS&TN exists.
+
+[DEBUG] [10 Nov 2024 06:05:28,909] (DeployerUtil.java:createISServerAliases:214)
+Deleting IS Alias : aliasName = local@SAG-48GFBS3:5557
+
+[ INFO] [10 Nov 2024 06:05:28,923] (DeployerUtil.java:createISServerAliases:217)
+Deleted IS Alias : aliasName = local@SAG-48GFBS3:5557
+
+[DEBUG] [10 Nov 2024 06:05:28,923] (DeployerUtil.java:createISServerAliases:220)
+Creating IS Alias : aliasName = local@SAG-48GFBS3:5557 with the user Administrator
+
+[ INFO] [10 Nov 2024 06:05:28,947] (DeployerUtil.java:createISServerAliases:242)
+Created IS Alias : aliasName = local@SAG-48GFBS3:5557 with the user Administrator
+
+[ INFO] [10 Nov 2024 06:05:28,961] (RepoAssetUtil.java:getRepositoryComposite:288)
+Adding asset isconfiguration from srcAlias=projectAutoRepoAlias1 to Deployment Set Source
+
+[DEBUG] [10 Nov 2024 06:05:28,962] (RepoAssetUtil.java:getRepositoryComposite:291)
+projectAutoRepoAlias1$IS$isconfiguration$COMPOSITE_INCL
+
+[ INFO] [10 Nov 2024 06:05:28,965] (RepoAssetUtil.java:getRepositoryComposite:288)
+Adding asset NMBuildTest from srcAlias=projectAutoRepoAlias1 to Deployment Set Source
+
+[DEBUG] [10 Nov 2024 06:05:28,965] (RepoAssetUtil.java:getRepositoryComposite:291)
+projectAutoRepoAlias1$IS$NMBuildTest$COMPOSITE_INCL
+
+[DEBUG] [10 Nov 2024 06:05:28,968] (ProjectPlanExecutorXMLParser.java:getProjectDetails:627)
+Deleting Project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:05:28,973] (ProjectPlanExecutorXMLParser.java:getProjectDetails:632)
+Creating Project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:05:29,050] (ProjectPlanExecutorXMLParser.java:getProjectDetails:634)
+Created Project projectAutoRepoDep1
+
+[DEBUG] [10 Nov 2024 06:05:29,050] (DeploymentSet.java:create:190)
+Creating Deployment Set Source of type Repository for project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:05:29,073] (DeploymentSet.java:create:219)
+Created Deployment Set Source of type Repository for project projectAutoRepoDep1
+
+[DEBUG] [10 Nov 2024 06:05:29,074] (DeploymentSet.java:updateSourceServerAliasToSets:389)
+Updating Source Server Aliases on Deployment Set Source of type Repository for project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:05:29,094] (DeploymentSet.java:updateSourceServerAliasToSets:434)
+Updated Source Server Aliases on Deployment Set Source of type Repository for project projectAutoRepoDep1
+
+[DEBUG] [10 Nov 2024 06:05:29,094] (DeploymentSet.java:addRepoCompositesToDeploymentSet:2867)
+Adding Repository Objects to Deployment Set Source of type Repository for project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:05:29,142] (DeploymentSet.java:addRepoCompositesToDeploymentSet:2896)
+Added Repository Objects to Deployment Set Source of type Repository for project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:05:29,270] (DeploymentMap.java:create:70)
+Creating Deployment Map Destination in Project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:05:29,283] (DeploymentMap.java:create:90)
+Successfully created Deployment Map Destination in Project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:05:29,307] (DeploymentCandidate.java:create:87)
+Creating Deployment Candidate myDeployment with Deployment Map Destination for project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:05:29,319] (DeploymentCandidate.java:create:115)
+Successfully created Deployment Candidate myDeployment with Deployment Map Destination for project projectAutoRepoDep1
+
+[ INFO] [10 Nov 2024 06:05:29,411] (XMLReport.java:runExample:41)
+Started Generating Report ... 
+
+[ INFO] [10 Nov 2024 06:05:29,413] (XMLReport.java:createDOMTree:88)
+Info Messages Size = 17
+
+[ INFO] [10 Nov 2024 06:05:29,413] (XMLReport.java:createDOMTree:89)
+Error Messages Size = 0
+
+[ INFO] [10 Nov 2024 06:05:29,428] (XMLReport.java:runExample:44)
+Generated Automation Test Suite Report file successfully.
+
+[ INFO] [10 Nov 2024 08:37:19,208] (MainClass.java:main:168)
+No of command line arguments = 4
+
+[ INFO] [10 Nov 2024 08:37:19,211] (MainClass.java:main:170)
+Argument 0 = C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo2.xml
+
+[ INFO] [10 Nov 2024 08:37:19,212] (MainClass.java:main:170)
+Argument 1 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRuntime.xsd
+
+[ INFO] [10 Nov 2024 08:37:19,212] (MainClass.java:main:170)
+Argument 2 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRepository.xsd
+
+[ INFO] [10 Nov 2024 08:37:19,213] (MainClass.java:main:170)
+Argument 3 = 1
+
+[ INFO] [10 Nov 2024 08:37:19,216] (MainClass.java:main:198)
+Operating System on which ProjectAutomator is running is a WINDOWS or a WINDOWS Variant
+
+[ INFO] [10 Nov 2024 08:37:19,217] (MainClass.java:main:212)
+Path to XML project definition file : C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo2.xml
+
+[ INFO] [10 Nov 2024 08:37:19,223] (MainClass.java:<init>:46)
+Started Operation of Deployer Test Suite
+
+[ERROR] [10 Nov 2024 08:37:19,346] (MainClass.java:validateXMLWithSchema:156)
+Error validating XML with schema. Exception thrown cvc-complex-type.2.4.b: The content of element 'DeployerSpec' is not complete. One of '{Projects}' is expected.
+
+[ INFO] [10 Nov 2024 08:38:00,564] (MainClass.java:main:168)
+No of command line arguments = 4
+
+[ INFO] [10 Nov 2024 08:38:00,567] (MainClass.java:main:170)
+Argument 0 = C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo2.xml
+
+[ INFO] [10 Nov 2024 08:38:00,567] (MainClass.java:main:170)
+Argument 1 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRuntime.xsd
+
+[ INFO] [10 Nov 2024 08:38:00,567] (MainClass.java:main:170)
+Argument 2 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRepository.xsd
+
+[ INFO] [10 Nov 2024 08:38:00,568] (MainClass.java:main:170)
+Argument 3 = 1
+
+[ INFO] [10 Nov 2024 08:38:00,571] (MainClass.java:main:198)
+Operating System on which ProjectAutomator is running is a WINDOWS or a WINDOWS Variant
+
+[ INFO] [10 Nov 2024 08:38:00,571] (MainClass.java:main:212)
+Path to XML project definition file : C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoRepo2.xml
+
+[ INFO] [10 Nov 2024 08:38:00,575] (MainClass.java:<init>:46)
+Started Operation of Deployer Test Suite
+
+[ INFO] [10 Nov 2024 08:38:01,660] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[ INFO] [10 Nov 2024 08:38:01,676] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[ INFO] [10 Nov 2024 08:38:01,840] (ProjectPlanExecutorXMLParser.java:getDeployerServerDetails:467)
+Using WmDeployer package on the Server localhost:5557 configured with the user Administrator
+
+[DEBUG] [10 Nov 2024 08:38:01,841] (ServerAlias.java:doesServerAliasExist:92)
+Checking if the  Server Alias projectAutoRepoAlias2 of pluginType Repository exists.
+
+[DEBUG] [10 Nov 2024 08:38:01,857] (DeployerUtil.java:createRepositoryServerAliases:1326)
+Creating Repository Server Alias : aliasName = projectAutoRepoAlias2
+
+[ INFO] [10 Nov 2024 08:38:01,881] (DeployerUtil.java:createRepositoryServerAliases:1328)
+Created Repository Server Alias Alias : aliasName = projectAutoRepoAlias2
+
+[DEBUG] [10 Nov 2024 08:38:01,881] (DeployerUtil.java:createRepositoryServerAliases:1330)
+Creating Repository Indexes : aliasName = projectAutoRepoAlias2
+
+[ INFO] [10 Nov 2024 08:38:02,123] (DeployerUtil.java:createRepositoryServerAliases:1332)
+Created Repository Indexes : aliasName = projectAutoRepoAlias2
+
+[ INFO] [10 Nov 2024 08:38:02,215] (XMLReport.java:runExample:41)
+Started Generating Report ... 
+
+[ INFO] [10 Nov 2024 08:38:02,217] (XMLReport.java:createDOMTree:88)
+Info Messages Size = 5
+
+[ INFO] [10 Nov 2024 08:38:02,217] (XMLReport.java:createDOMTree:89)
+Error Messages Size = 0
+
+[ INFO] [10 Nov 2024 08:38:02,229] (XMLReport.java:runExample:44)
+Generated Automation Test Suite Report file successfully.
+
+[ INFO] [10 Nov 2024 08:54:44,215] (MainClass.java:main:168)
+No of command line arguments = 4
+
+[ INFO] [10 Nov 2024 08:54:44,215] (MainClass.java:main:170)
+Argument 0 = C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoISalias.xml
+
+[ INFO] [10 Nov 2024 08:54:44,215] (MainClass.java:main:170)
+Argument 1 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRuntime.xsd
+
+[ INFO] [10 Nov 2024 08:54:44,215] (MainClass.java:main:170)
+Argument 2 = C:\SoftwareAG1011Designer\IntegrationServer\instances\default\packages\WmDeployer\bin\\..\config\ProjectAutomatorForRepository.xsd
+
+[ INFO] [10 Nov 2024 08:54:44,215] (MainClass.java:main:170)
+Argument 3 = 1
+
+[ INFO] [10 Nov 2024 08:54:44,231] (MainClass.java:main:198)
+Operating System on which ProjectAutomator is running is a WINDOWS or a WINDOWS Variant
+
+[ INFO] [10 Nov 2024 08:54:44,231] (MainClass.java:main:212)
+Path to XML project definition file : C:\SoftwareAG1011Designer\build\projectAutoFile\ProjectAutoISalias.xml
+
+[ INFO] [10 Nov 2024 08:54:44,231] (MainClass.java:<init>:46)
+Started Operation of Deployer Test Suite
+
+[ INFO] [10 Nov 2024 08:54:45,637] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[ INFO] [10 Nov 2024 08:54:45,684] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[ INFO] [10 Nov 2024 08:54:45,811] (ProjectPlanExecutorXMLParser.java:getDeployerServerDetails:467)
+Using WmDeployer package on the Server localhost:5557 configured with the user Administrator
+
+[ INFO] [10 Nov 2024 08:54:45,859] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[ INFO] [10 Nov 2024 08:54:45,874] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[DEBUG] [10 Nov 2024 08:54:45,890] (ServerAlias.java:doesServerAliasExist:92)
+Checking if the  Server Alias ATS_local of pluginType IS&TN exists.
+
+[DEBUG] [10 Nov 2024 08:54:45,890] (DeployerUtil.java:createISServerAliases:220)
+Creating IS Alias : aliasName = ATS_local@localhost:5555 with the user Administrator
+
+[ INFO] [10 Nov 2024 08:54:45,952] (DeployerUtil.java:createISServerAliases:242)
+Created IS Alias : aliasName = ATS_local@localhost:5555 with the user Administrator
+
+[DEBUG] [10 Nov 2024 08:54:45,952] (ISServerAlias.java:installDeployerResource:290)
+Installing WmDeployerResource on the IS Server Alias ATS_local
+
+[ INFO] [10 Nov 2024 08:54:47,370] (ISServerAlias.java:installDeployerResource:338)
+Installed WmDeployerResource on the IS Server Alias ATS_local
+
+[ INFO] [10 Nov 2024 08:54:47,370] (DeployerUtil.java:createISServerAliases:246)
+Pinging IS Server Alias ATS_local
+
+[DEBUG] [10 Nov 2024 08:54:47,370] (ISServerAlias.java:ping:383)
+Pinging  IS Server Alias ATS_local 
+
+[DEBUG] [10 Nov 2024 08:54:47,637] (ISServerAlias.java:ping:400)
+Successfully pinged ATS_local. pong
+
+[ INFO] [10 Nov 2024 08:54:47,637] (DeployerUtil.java:createISServerAliases:252)
+Successfully pinged Server Alias ATS_local.
+
+[ INFO] [10 Nov 2024 08:54:47,731] (XMLReport.java:runExample:41)
+Started Generating Report ... 
+
+[ INFO] [10 Nov 2024 08:54:47,731] (XMLReport.java:createDOMTree:88)
+Info Messages Size = 5
+
+[ INFO] [10 Nov 2024 08:54:47,731] (XMLReport.java:createDOMTree:89)
+Error Messages Size = 0
+
+[ INFO] [10 Nov 2024 08:54:47,747] (XMLReport.java:runExample:44)
+Generated Automation Test Suite Report file successfully.
+
+[DEBUG] [10 Nov 2024 09:05:34,027] (ParseDeployerParams.java:parse:74)
+[Deployer] Entering parse(String[] args) Method
+
+[ INFO] [10 Nov 2024 09:05:34,036] (ParseDeployerParams.java:parse:1795)
+[[DEP.0100.5.56] Operation] [DEP.0100.5.21] Simulate Deployment Candidate
+
+[DEBUG] [10 Nov 2024 09:05:34,043] (ParseDeployerParams.java:validateCommandLineParametersForAction:2575)
+[Deployer] Entering validateCommandLineParametersForAction(Args arg,	CommandLineParser parser)
+
+[DEBUG] [10 Nov 2024 09:05:34,043] (ParseDeployerParams.java:validateCommandLineParametersForAction:2601)
+[Deployer]Config file specified
+
+[DEBUG] [10 Nov 2024 09:05:34,043] (ParseDeployerParams.java:validateCommandLineParametersForAction:2659)
+[Deployer][ConfigFileParam] Key = port Value=5557  
+
+[DEBUG] [10 Nov 2024 09:05:34,043] (ParseDeployerParams.java:validateCommandLineParametersForAction:2651)
+[Deployer][ConfigFileParam] Key = host Value=localhost  
+
+[DEBUG] [10 Nov 2024 09:05:34,043] (ParseDeployerParams.java:validateCommandLineParametersForAction:2627)
+[Deployer][ConfigFileParam] Key = pwd.Password is present but not shown.
+
+[ INFO] [10 Nov 2024 09:05:35,239] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[ INFO] [10 Nov 2024 09:05:35,252] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[DEBUG] [10 Nov 2024 09:05:35,283] (ParseDeployerParams.java:validateCommandLineParametersForAction:2619)
+[Deployer][ConfigFileParam] Key = user Value=Administrator  
+
+[DEBUG] [10 Nov 2024 09:05:35,283] (ParseDeployerParams.java:validateCommandLineParametersForAction:2886)
+[Deployer] [Param Authentication] 
+
+[DEBUG] [10 Nov 2024 09:05:35,283] (ParseDeployerParams.java:validateCommandLineParametersForAction:2889)
+[Deployer] [Config File Parameters]isUserSpecifiedinConfigFile = true
+
+[DEBUG] [10 Nov 2024 09:05:35,283] (ParseDeployerParams.java:validateCommandLineParametersForAction:2892)
+[Deployer] [Config File Parameters]isPasswordSpecifiedinConfigFile = true
+
+[DEBUG] [10 Nov 2024 09:05:35,299] (ParseDeployerParams.java:validateCommandLineParametersForAction:2894)
+[Deployer] Operation invoked by User Administrator   on Deployer localhost:5557  
+
+[DEBUG] [10 Nov 2024 09:05:35,299] (ParseDeployerParams.java:printParamMap:5183)
+[Deployer][ParamMap] Key = port Value = 5557  
+
+[DEBUG] [10 Nov 2024 09:05:35,299] (ParseDeployerParams.java:printParamMap:5183)
+[Deployer][ParamMap] Key = host Value = localhost  
+
+[DEBUG] [10 Nov 2024 09:05:35,299] (ParseDeployerParams.java:printParamMap:5183)
+[Deployer][ParamMap] Key = action Value = simulate
+
+[DEBUG] [10 Nov 2024 09:05:35,299] (ParseDeployerParams.java:printParamMap:5180)
+[Deployer][ParamMap] Key = pwd.Value present but not shown.
+
+[DEBUG] [10 Nov 2024 09:05:35,299] (ParseDeployerParams.java:printParamMap:5183)
+[Deployer][ParamMap] Key = user Value = Administrator  
+
+[ INFO] [10 Nov 2024 09:05:35,299] (ParseDeployerParams.java:validateCommandLineParametersForAction:3954)
+[[DEP.0100.5.56] Operation] [DEP.0100.5.21] Simulate Deployment Candidate
+
+[DEBUG] [10 Nov 2024 09:05:35,299] (ParseDeployerParams.java:validateCommandLineParametersForAction:5150)
+[Deployer] Exiting validateCommandLineParametersForAction(Args arg,	CommandLineParser parser)
+
+[DEBUG] [10 Nov 2024 09:05:35,299] (DeployerServiceUtils.java:deployAction:657)
+[Deployer] Entering deployAction(HashMap paramMap) Method
+
+[DEBUG] [10 Nov 2024 09:05:35,299] (DeployerServiceUtils.java:deployAction:660)
+[Deployer] Invoking Service wm.deployer.UIDeployer.deployToTargets on Deployer localhost:5557  
+
+[DEBUG] [10 Nov 2024 09:05:35,299] (DeployerServiceUtils.java:deployAction:666)
+[Deployer] Service invoked by User Administrator  
+
+[DEBUG] [10 Nov 2024 09:05:35,299] (DeployerServiceUtils.java:deployAction:668)
+[Deployer] Parameters to the service 
+
+[DEBUG] [10 Nov 2024 09:05:35,314] (DeployerServiceUtils.java:deployAction:680)
+[Deployer] 	project = projectAutoRepoDep1
+
+[DEBUG] [10 Nov 2024 09:05:35,314] (DeployerServiceUtils.java:deployAction:680)
+[Deployer] 	deploymentName = myDeployment
+
+[DEBUG] [10 Nov 2024 09:05:35,314] (DeployerServiceUtils.java:deployAction:680)
+[Deployer] 	preDeployString = true
+
+[DEBUG] [10 Nov 2024 09:05:35,314] (DeployerServiceUtils.java:deployAction:680)
+[Deployer] 	reportFilePath = null
+
+[DEBUG] [10 Nov 2024 09:05:35,314] (DeployerServiceUtils.java:executeService:1484)
+[Deployer] Entering executeService(String server, String user, String pwd, String packageStr, String service,IData inputDocument) Method
+
+[DEBUG] [10 Nov 2024 09:05:35,339] (DeployerServiceUtils.java:executeService:1535)
+[Deployer] Initiating connection Secure Socket Layer = false
+
+[DEBUG] [10 Nov 2024 09:05:35,362] (DeployerServiceUtils.java:executeService:1537)
+[Deployer] Connection Established Secure Socket Layer = false
+
+[DEBUG] [10 Nov 2024 09:05:35,362] (DeployerServiceUtils.java:executeService:1539)
+[Deployer] Executing Service wm.deployer.UIDeployer:deployToTargets Secure Socket Layer = false
+
+[DEBUG] [10 Nov 2024 09:05:36,431] (DeployerServiceUtils.java:executeService:1541)
+[Deployer] Completed Executing Service wm.deployer.UIDeployer:deployToTargets Secure Socket Layer = false
+
+[DEBUG] [10 Nov 2024 09:05:36,431] (DeployerServiceUtils.java:executeService:1577)
+[Deployer] Exiting executeService(String server, String user, String pwd, String packageStr, String service,IData inputDocument) Method
+
+[DEBUG] [10 Nov 2024 09:05:36,431] (DeployerServiceUtils.java:deployAction:701)
+[Deployer Service Status] Stature returned with status success
+
+[DEBUG] [10 Nov 2024 09:05:36,431] (DeployerServiceUtils.java:deployAction:714)
+[Deployer Service Status] Message = [DEP.0005.0252] Simulation report generated successfully
+
+[DEBUG] [10 Nov 2024 09:05:36,431] (DeployerServiceUtils.java:deployAction:726)
+[Deployer] Exiting deployAction(HashMap paramMap) Method
+
+[DEBUG] [10 Nov 2024 09:05:36,431] (ParseDeployerParams.java:addStatusRecordToReport:5157)
+[Deployer] Entering addStatusRecordToReport(int errorCode, String message, boolean isUsageRecord) Method
+
+[DEBUG] [10 Nov 2024 09:05:36,431] (ParseDeployerParams.java:addStatusRecordToReport:5168)
+[Deployer] Exiting addStatusRecordToReport(int errorCode, String message, boolean isUsageRecord) Method
+
+[ INFO] [10 Nov 2024 09:05:36,431] (ParseDeployerParams.java:parse:1811)
+[[DEP.0100.4.00] Success0] [DEP.0005.0252] Simulation report generated successfully
+
+[DEBUG] [10 Nov 2024 09:06:58,943] (ParseDeployerParams.java:parse:74)
+[Deployer] Entering parse(String[] args) Method
+
+[ INFO] [10 Nov 2024 09:06:58,958] (ParseDeployerParams.java:parse:1873)
+[[DEP.0100.5.56] Operation] [DEP.0100.5.22] Checkpoint Deployment Candidate
+
+[DEBUG] [10 Nov 2024 09:06:58,958] (ParseDeployerParams.java:validateCommandLineParametersForAction:2575)
+[Deployer] Entering validateCommandLineParametersForAction(Args arg,	CommandLineParser parser)
+
+[DEBUG] [10 Nov 2024 09:06:58,958] (ParseDeployerParams.java:validateCommandLineParametersForAction:2601)
+[Deployer]Config file specified
+
+[DEBUG] [10 Nov 2024 09:06:58,958] (ParseDeployerParams.java:validateCommandLineParametersForAction:2659)
+[Deployer][ConfigFileParam] Key = port Value=5557  
+
+[DEBUG] [10 Nov 2024 09:06:58,958] (ParseDeployerParams.java:validateCommandLineParametersForAction:2651)
+[Deployer][ConfigFileParam] Key = host Value=localhost  
+
+[DEBUG] [10 Nov 2024 09:06:58,958] (ParseDeployerParams.java:validateCommandLineParametersForAction:2627)
+[Deployer][ConfigFileParam] Key = pwd.Password is present but not shown.
+
+[ INFO] [10 Nov 2024 09:07:00,045] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[ INFO] [10 Nov 2024 09:07:00,061] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[DEBUG] [10 Nov 2024 09:07:00,093] (ParseDeployerParams.java:validateCommandLineParametersForAction:2619)
+[Deployer][ConfigFileParam] Key = user Value=Administrator  
+
+[DEBUG] [10 Nov 2024 09:07:00,093] (ParseDeployerParams.java:validateCommandLineParametersForAction:2886)
+[Deployer] [Param Authentication] 
+
+[DEBUG] [10 Nov 2024 09:07:00,093] (ParseDeployerParams.java:validateCommandLineParametersForAction:2889)
+[Deployer] [Config File Parameters]isUserSpecifiedinConfigFile = true
+
+[DEBUG] [10 Nov 2024 09:07:00,093] (ParseDeployerParams.java:validateCommandLineParametersForAction:2892)
+[Deployer] [Config File Parameters]isPasswordSpecifiedinConfigFile = true
+
+[DEBUG] [10 Nov 2024 09:07:00,108] (ParseDeployerParams.java:validateCommandLineParametersForAction:2894)
+[Deployer] Operation invoked by User Administrator   on Deployer localhost:5557  
+
+[DEBUG] [10 Nov 2024 09:07:00,108] (ParseDeployerParams.java:printParamMap:5183)
+[Deployer][ParamMap] Key = port Value = 5557  
+
+[DEBUG] [10 Nov 2024 09:07:00,108] (ParseDeployerParams.java:printParamMap:5183)
+[Deployer][ParamMap] Key = host Value = localhost  
+
+[DEBUG] [10 Nov 2024 09:07:00,108] (ParseDeployerParams.java:printParamMap:5183)
+[Deployer][ParamMap] Key = action Value = checkpoint
+
+[DEBUG] [10 Nov 2024 09:07:00,108] (ParseDeployerParams.java:printParamMap:5180)
+[Deployer][ParamMap] Key = pwd.Value present but not shown.
+
+[DEBUG] [10 Nov 2024 09:07:00,108] (ParseDeployerParams.java:printParamMap:5183)
+[Deployer][ParamMap] Key = user Value = Administrator  
+
+[ INFO] [10 Nov 2024 09:07:00,108] (ParseDeployerParams.java:validateCommandLineParametersForAction:4178)
+[[DEP.0100.5.56] Operation] [DEP.0100.5.22] Checkpoint Deployment Candidate
+
+[DEBUG] [10 Nov 2024 09:07:00,108] (ParseDeployerParams.java:validateCommandLineParametersForAction:5150)
+[Deployer] Exiting validateCommandLineParametersForAction(Args arg,	CommandLineParser parser)
+
+[DEBUG] [10 Nov 2024 09:07:00,108] (DeployerServiceUtils.java:deployAction:657)
+[Deployer] Entering deployAction(HashMap paramMap) Method
+
+[DEBUG] [10 Nov 2024 09:07:00,108] (DeployerServiceUtils.java:deployAction:660)
+[Deployer] Invoking Service wm.deployer.gui.UICheckpoint.createCheckpoint on Deployer localhost:5557  
+
+[DEBUG] [10 Nov 2024 09:07:00,108] (DeployerServiceUtils.java:deployAction:666)
+[Deployer] Service invoked by User Administrator  
+
+[DEBUG] [10 Nov 2024 09:07:00,124] (DeployerServiceUtils.java:deployAction:668)
+[Deployer] Parameters to the service 
+
+[DEBUG] [10 Nov 2024 09:07:00,124] (DeployerServiceUtils.java:deployAction:680)
+[Deployer] 	projectName = projectAutoRepoDep1
+
+[DEBUG] [10 Nov 2024 09:07:00,124] (DeployerServiceUtils.java:deployAction:680)
+[Deployer] 	deploymentName = myDeployment
+
+[DEBUG] [10 Nov 2024 09:07:00,124] (DeployerServiceUtils.java:deployAction:680)
+[Deployer] 	reportFilePath = null
+
+[DEBUG] [10 Nov 2024 09:07:00,124] (DeployerServiceUtils.java:executeService:1484)
+[Deployer] Entering executeService(String server, String user, String pwd, String packageStr, String service,IData inputDocument) Method
+
+[DEBUG] [10 Nov 2024 09:07:00,140] (DeployerServiceUtils.java:executeService:1535)
+[Deployer] Initiating connection Secure Socket Layer = false
+
+[DEBUG] [10 Nov 2024 09:07:00,184] (DeployerServiceUtils.java:executeService:1537)
+[Deployer] Connection Established Secure Socket Layer = false
+
+[DEBUG] [10 Nov 2024 09:07:00,184] (DeployerServiceUtils.java:executeService:1539)
+[Deployer] Executing Service wm.deployer.gui.UICheckpoint:createCheckpoint Secure Socket Layer = false
+
+[DEBUG] [10 Nov 2024 09:07:00,219] (DeployerServiceUtils.java:executeService:1541)
+[Deployer] Completed Executing Service wm.deployer.gui.UICheckpoint:createCheckpoint Secure Socket Layer = false
+
+[DEBUG] [10 Nov 2024 09:07:00,219] (DeployerServiceUtils.java:executeService:1577)
+[Deployer] Exiting executeService(String server, String user, String pwd, String packageStr, String service,IData inputDocument) Method
+
+[DEBUG] [10 Nov 2024 09:07:00,219] (DeployerServiceUtils.java:deployAction:710)
+[Deployer Service Status] Stature returned with status error
+
+[DEBUG] [10 Nov 2024 09:07:00,219] (DeployerServiceUtils.java:deployAction:714)
+[Deployer Service Status] Message = [DEP.0008.0024] Deployer does not allow you to create checkpoints for transactional deployment.
+
+[DEBUG] [10 Nov 2024 09:07:00,219] (DeployerServiceUtils.java:deployAction:726)
+[Deployer] Exiting deployAction(HashMap paramMap) Method
+
+[DEBUG] [10 Nov 2024 09:07:00,219] (ParseDeployerParams.java:addStatusRecordToReport:5157)
+[Deployer] Entering addStatusRecordToReport(int errorCode, String message, boolean isUsageRecord) Method
+
+[DEBUG] [10 Nov 2024 09:07:00,219] (ParseDeployerParams.java:addStatusRecordToReport:5168)
+[Deployer] Exiting addStatusRecordToReport(int errorCode, String message, boolean isUsageRecord) Method
+
+[ INFO] [10 Nov 2024 09:07:00,219] (ParseDeployerParams.java:parse:1908)
+[[DEP.0100.4.01] Error -999][DEP.0100.-999] Service Error [DEP.0008.0024] Deployer does not allow you to create checkpoints for transactional deployment.
+
+[DEBUG] [10 Nov 2024 09:09:22,530] (ParseDeployerParams.java:parse:74)
+[Deployer] Entering parse(String[] args) Method
+
+[ INFO] [10 Nov 2024 09:09:22,562] (ParseDeployerParams.java:parse:1951)
+[[DEP.0100.5.56] Operation] [DEP.0100.5.23] Deploy Deployment Candidate
+
+[DEBUG] [10 Nov 2024 09:09:22,562] (ParseDeployerParams.java:validateCommandLineParametersForAction:2575)
+[Deployer] Entering validateCommandLineParametersForAction(Args arg,	CommandLineParser parser)
+
+[DEBUG] [10 Nov 2024 09:09:22,562] (ParseDeployerParams.java:validateCommandLineParametersForAction:2601)
+[Deployer]Config file specified
+
+[DEBUG] [10 Nov 2024 09:09:22,577] (ParseDeployerParams.java:validateCommandLineParametersForAction:2659)
+[Deployer][ConfigFileParam] Key = port Value=5557  
+
+[DEBUG] [10 Nov 2024 09:09:22,577] (ParseDeployerParams.java:validateCommandLineParametersForAction:2651)
+[Deployer][ConfigFileParam] Key = host Value=localhost  
+
+[DEBUG] [10 Nov 2024 09:09:22,577] (ParseDeployerParams.java:validateCommandLineParametersForAction:2627)
+[Deployer][ConfigFileParam] Key = pwd.Password is present but not shown.
+
+[ INFO] [10 Nov 2024 09:09:23,816] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[ INFO] [10 Nov 2024 09:09:23,843] (KeyObfuscator.java:decryptAndUnobfuscate:162)
+Successfully retrieved the key from the given obfuscated file.
+
+[DEBUG] [10 Nov 2024 09:09:23,864] (ParseDeployerParams.java:validateCommandLineParametersForAction:2619)
+[Deployer][ConfigFileParam] Key = user Value=Administrator  
+
+[DEBUG] [10 Nov 2024 09:09:23,875] (ParseDeployerParams.java:validateCommandLineParametersForAction:2886)
+[Deployer] [Param Authentication] 
+
+[DEBUG] [10 Nov 2024 09:09:23,875] (ParseDeployerParams.java:validateCommandLineParametersForAction:2889)
+[Deployer] [Config File Parameters]isUserSpecifiedinConfigFile = true
+
+[DEBUG] [10 Nov 2024 09:09:23,875] (ParseDeployerParams.java:validateCommandLineParametersForAction:2892)
+[Deployer] [Config File Parameters]isPasswordSpecifiedinConfigFile = true
+
+[DEBUG] [10 Nov 2024 09:09:23,875] (ParseDeployerParams.java:validateCommandLineParametersForAction:2894)
+[Deployer] Operation invoked by User Administrator   on Deployer localhost:5557  
+
+[DEBUG] [10 Nov 2024 09:09:23,875] (ParseDeployerParams.java:printParamMap:5183)
+[Deployer][ParamMap] Key = port Value = 5557  
+
+[DEBUG] [10 Nov 2024 09:09:23,875] (ParseDeployerParams.java:printParamMap:5183)
+[Deployer][ParamMap] Key = host Value = localhost  
+
+[DEBUG] [10 Nov 2024 09:09:23,875] (ParseDeployerParams.java:printParamMap:5183)
+[Deployer][ParamMap] Key = action Value = deploy
+
+[DEBUG] [10 Nov 2024 09:09:23,875] (ParseDeployerParams.java:printParamMap:5180)
+[Deployer][ParamMap] Key = pwd.Value present but not shown.
+
+[DEBUG] [10 Nov 2024 09:09:23,875] (ParseDeployerParams.java:printParamMap:5183)
+[Deployer][ParamMap] Key = user Value = Administrator  
+
+[ INFO] [10 Nov 2024 09:09:23,875] (ParseDeployerParams.java:validateCommandLineParametersForAction:4040)
+[[DEP.0100.5.56] Operation] [DEP.0100.5.23] Deploy Deployment Candidate
+
+[DEBUG] [10 Nov 2024 09:09:23,891] (ParseDeployerParams.java:validateCommandLineParametersForAction:5150)
+[Deployer] Exiting validateCommandLineParametersForAction(Args arg,	CommandLineParser parser)
+
+[DEBUG] [10 Nov 2024 09:09:23,892] (DeployerServiceUtils.java:deployAction:657)
+[Deployer] Entering deployAction(HashMap paramMap) Method
+
+[DEBUG] [10 Nov 2024 09:09:23,892] (DeployerServiceUtils.java:deployAction:660)
+[Deployer] Invoking Service wm.deployer.UIDeployer.deployToTargets on Deployer localhost:5557  
+
+[DEBUG] [10 Nov 2024 09:09:23,892] (DeployerServiceUtils.java:deployAction:666)
+[Deployer] Service invoked by User Administrator  
+
+[DEBUG] [10 Nov 2024 09:09:23,892] (DeployerServiceUtils.java:deployAction:668)
+[Deployer] Parameters to the service 
+
+[DEBUG] [10 Nov 2024 09:09:23,907] (DeployerServiceUtils.java:deployAction:680)
+[Deployer] 	project = projectAutoRepoDep1
+
+[DEBUG] [10 Nov 2024 09:09:23,907] (DeployerServiceUtils.java:deployAction:680)
+[Deployer] 	deploymentName = myDeployment
+
+[DEBUG] [10 Nov 2024 09:09:23,907] (DeployerServiceUtils.java:deployAction:680)
+[Deployer] 	preDeployString = false
+
+[DEBUG] [10 Nov 2024 09:09:23,907] (DeployerServiceUtils.java:deployAction:680)
+[Deployer] 	force = false
+
+[DEBUG] [10 Nov 2024 09:09:23,907] (DeployerServiceUtils.java:deployAction:680)
+[Deployer] 	reportFilePath = null
+
+[DEBUG] [10 Nov 2024 09:09:23,907] (DeployerServiceUtils.java:executeService:1484)
+[Deployer] Entering executeService(String server, String user, String pwd, String packageStr, String service,IData inputDocument) Method
+
+[DEBUG] [10 Nov 2024 09:09:23,939] (DeployerServiceUtils.java:executeService:1535)
+[Deployer] Initiating connection Secure Socket Layer = false
+
+[DEBUG] [10 Nov 2024 09:09:24,002] (DeployerServiceUtils.java:executeService:1537)
+[Deployer] Connection Established Secure Socket Layer = false
+
+[DEBUG] [10 Nov 2024 09:09:24,002] (DeployerServiceUtils.java:executeService:1539)
+[Deployer] Executing Service wm.deployer.UIDeployer:deployToTargets Secure Socket Layer = false
+
+[DEBUG] [10 Nov 2024 09:09:26,319] (DeployerServiceUtils.java:executeService:1541)
+[Deployer] Completed Executing Service wm.deployer.UIDeployer:deployToTargets Secure Socket Layer = false
+
+[DEBUG] [10 Nov 2024 09:09:26,335] (DeployerServiceUtils.java:executeService:1577)
+[Deployer] Exiting executeService(String server, String user, String pwd, String packageStr, String service,IData inputDocument) Method
+
+[DEBUG] [10 Nov 2024 09:09:26,335] (DeployerServiceUtils.java:deployAction:701)
+[Deployer Service Status] Stature returned with status success
+
+[DEBUG] [10 Nov 2024 09:09:26,335] (DeployerServiceUtils.java:deployAction:714)
+[Deployer Service Status] Message = [DEP.0005.0201] Deployment succeeded
+
+[DEBUG] [10 Nov 2024 09:09:26,335] (DeployerServiceUtils.java:deployAction:726)
+[Deployer] Exiting deployAction(HashMap paramMap) Method
+
+[DEBUG] [10 Nov 2024 09:09:26,335] (ParseDeployerParams.java:addStatusRecordToReport:5157)
+[Deployer] Entering addStatusRecordToReport(int errorCode, String message, boolean isUsageRecord) Method
+
+[DEBUG] [10 Nov 2024 09:09:26,335] (ParseDeployerParams.java:addStatusRecordToReport:5168)
+[Deployer] Exiting addStatusRecordToReport(int errorCode, String message, boolean isUsageRecord) Method
+
+[ INFO] [10 Nov 2024 09:09:26,335] (ParseDeployerParams.java:parse:1967)
+[[DEP.0100.4.00] Success0] [DEP.0005.0201] Deployment succeeded
+

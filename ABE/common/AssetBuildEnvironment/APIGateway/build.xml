@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project default="build" basedir="." name="webMethods API Gateway">
+
+	<property name="apigateway.ant.lib.dir" value="${basedir}/lib" />
+	<property name="APIGatewayNamespace" value="APIGateway"/>
+	<property name="temp.dir" value="temp"/>
+	
+	<property name="apigateway.abe.main.class" value="com.softwareag.apigateway.deployer.abe.ArchiveServiceCaller"/>
+	
+	<path id="master-classpath">
+		<fileset dir="${apigateway.ant.lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+		
+		<fileset dir="../../lib">
+            <include name="wm-isclient.jar"/>
+        </fileset>
+		
+		<fileset dir="../../lib/ext/log4j">
+            <include name="log4j-api.jar"/>
+			<include name="log4j-core.jar"/>
+        </fileset>
+		
+		<fileset dir="../../lib/ext/">
+            <include name="enttoolkit.jar"/>
+        </fileset>
+		
+		<fileset dir="../../lib/glassfish">
+            <include name="gf.jakarta.mail.jar"/>
+            <include name="gf.jackson-core-asl.jar"/>
+            <include name="gf.jackson2-core.jar"/>
+        </fileset>
+		
+		<fileset dir="../../lib/ext"> 
+            <include name="jackson-core.jar"/> 
+		</fileset> 
+	</path>
+	
+	
+	<target name="build" description="This is the target that is called to build the API Gateway Repository.">
+		<!-- Check for the local repo path to be present-->
+		<antcall target="validateParameters"/>
+		<!-- Here the decision is made to create a Local repository or to create something for the Deployer.-->
+		<if>
+			<equals arg1="${apigateway.buildLocalRepoOnly}" arg2="true"/>
+			 <then>
+			   <antcall target="createLocalRepository"/>
+			 </then>
+			 <else>
+			  <antcall target="createRepository"/>
+			 </else>
+		</if>	
+	</target>
+	
+	<target name="createLocalRepository" description="This will generate a local repository connecting to a Source API Gateway">
+		<!-- The unzip directory is the Build Output Directory here -->
+		<delete dir="${build.output.dir}/${APIGatewayNamespace}"/>
+		<mkdir dir="${build.output.dir}/${APIGatewayNamespace}"/>
+		<property name="unzip.dir" location="${build.output.dir}/${APIGatewayNamespace}"/>
+		<!-- Call the Source API Gateway to build the local repository -->
+		<antcall target="downloadFromSourceAPIGateway"/>
+	</target>
+	
+    <target name="createRepository" description="This creates Repository as needed by the WmDeployer either by using the local repository or by pulling the data from the Source API Gateway.">
+		<!-- Default values for the property apigateway.useLocalRepo-->
+		<if>
+			<isset property="apigateway.repo.createFromLocalRepo" />
+				<then>
+				</then>
+				<else>
+					<property name="apigateway.repo.createFromLocalRepo" value="false"/>
+				</else>
+		</if>
+		
+		<!-- Validation for the local repo usage -->
+		<if>
+			<equals arg1="${apigateway.repo.createFromLocalRepo}" arg2="true"/>
+			<then>
+				<!-- Check if the local repo path property is set -->
+				<if>
+					<isset property="apigateway.repo.localRepo.path" />
+						<then>
+						  <!-- no op -->
+						</then>
+						<else>
+							<fail message="Required property apigateway.repo.localRepo.path is not set" />
+						</else>
+				</if>
+				<antcall target="createRepoFromLocalRepo"/>
+			</then>
+			<else>
+			  <!--apigateway.is.url is false -->
+				<if>
+					<isset property="apigateway.is.url" />
+						<then>
+						</then>
+						<else>
+							<property name="apigateway.is.url" value="http://localhost:5555"/>
+						</else>
+						
+				</if>
+				<antcall target="createRepoFromSource"/>
+			</else>
+			
+		</if>
+	</target>
+	
+	<target name="downloadFromSourceAPIGateway" description="This is an internal target.">
+		  <if>
+		     <isset property="apigateway.is.username" />
+			 <then>
+			 </then>
+			 <else>
+				<property name="apigateway.is.username" value="null"/>
+			</else>
+		   </if>
+		   
+		    <if>
+		     <isset property="apigateway.is.password" />
+			 <then>
+			 </then>
+			 <else>
+				<property name="apigateway.is.password" value="null"/>
+			</else>
+		   </if>
+		   
+		    <if>
+		     <isset property="apigateway.is.url" />
+			 <then>
+			 </then>
+			 <else>
+				<property name="apigateway.is.url" value="null"/>
+			</else>
+		   </if>
+		   
+		 <!-- This gets the absoulte path of the ${apigateway.assets.file} -->
+		  <if>
+		     <isset property="apigateway.assets.file" />
+			 <then>
+				<property name="apigateway.assets.file.absolute.path" location="${apigateway.assets.file}"/>
+			 </then>
+			 <else>
+				<property name="apigateway.assets.file.absolute.path" value="null"/>
+			</else>
+		   </if>
+		   
+		   <!-- This gets the absoulte path of the ${apigateway.ssl.keystore.file} -->
+		   <if>
+		     <isset property="apigateway.ssl.keystore.file" />
+			 <then>
+				<property name="apigateway.ssl.keystore.file.absolute.path" location="${apigateway.ssl.keystore.file}"/>
+			 </then>
+			 <else>
+				<property name="apigateway.ssl.keystore.file.absolute.path" value="null"/>
+			</else>
+		   </if>
+		   
+		   <if>
+		     <isset property="is.rest.invokeDir" />
+			 <then>
+			 </then>
+			 <else>
+				<property name="is.rest.invokeDir" value="rest"/>
+			</else>
+		   </if>
+		   
+		    <if>
+		     <isset property="apigateway.ssl.keystore.type" />
+			 <then>
+			 </then>
+			 <else>
+				<property name="apigateway.ssl.keystore.type" value="null"/>
+			</else>
+		   </if>
+		   
+		    <if>
+		     <isset property="apigateway.ssl.keystore.password" />
+			 <then>
+			 </then>
+			 <else>
+				<property name="apigateway.ssl.keystore.password" value="null"/>
+			</else>
+		   </if>
+		   
+		    <if>
+		     <isset property="apigateway.ssl.keyalias" />
+			 <then>
+			 </then>
+			 <else>
+				<property name="apigateway.ssl.keyalias" value="null"/>
+			</else>
+		   </if>
+		   
+		    <if>
+		     <isset property="apigateway.ssl.keyalias.password" />
+			 <then>
+			 </then>
+			 <else>
+				<property name="apigateway.ssl.keyalias.password" value="null"/>
+			</else>
+		   </if>
+		   
+		 <!-- This  copies the downloaded to a temp directory TODO this needs to be changed.-->
+		 <java fork="true" classname="${apigateway.abe.main.class}" classpathref="master-classpath" failonerror="true"> 
+		   <jvmarg value="${max.mem}" />
+		   <jvmarg value="${max.perm.size}"/>
+		   <sysproperty key="dest.dir" value="${unzip.dir}"/>
+		   <sysproperty key="apigateway.is.username" value="${apigateway.is.username}"/>
+		   <sysproperty key="apigateway.is.password" value="${apigateway.is.password}"/>
+		   <sysproperty key="apigateway.is.url" value="${apigateway.is.url}"/>
+           <sysproperty key="apigateway.assets.file" value="${apigateway.assets.file.absolute.path}"/>
+		   <sysproperty key="is.rest.invokeDir" value="${is.rest.invokeDir}"/>		
+		   <sysproperty key="apigateway.ssl.keystore.file" value="${apigateway.ssl.keystore.file.absolute.path}"/>
+		   <sysproperty key="apigateway.ssl.keystore.type" value="${apigateway.ssl.keystore.type}"/>
+		   <sysproperty key="apigateway.ssl.keystore.password" value="${apigateway.ssl.keystore.password}"/>
+		   <sysproperty key="apigateway.ssl.keyalias" value="${apigateway.ssl.keyalias}"/>
+		   <sysproperty key="apigateway.ssl.keyalias.password" value="${apigateway.ssl.keyalias.password}"/>
+		   <sysproperty key="apigateway.logging.level" value="${apigateway.logging.level}"/>
+		 </java>
+		 
+	</target>
+
+	
+	<target name="createRepoFromLocalRepo">
+	    <echo>Creating Repo from Local file system at ${apigateway.repo.localRepo.path}</echo>
+		<delete dir="${build.output.dir}/${APIGatewayNamespace}"/>
+		<mkdir dir="${build.output.dir}/${APIGatewayNamespace}"/>
+		
+		<!-- TODO check for the ACDL file should be present.-->
+		<zip destfile="${build.output.dir}/${APIGatewayNamespace}/APIGatewayAssets.zip" basedir="${apigateway.repo.localRepo.path}"/>
+		
+		<copy toDir="${build.output.dir}/${APIGatewayNamespace}/">
+		  <fileset dir="${apigateway.repo.localRepo.path}">
+			<include name="APIGatewayAssets.acdl"/>
+		  </fileset>
+		</copy>
+	</target>
+	
+	<target name="createRepoFromSource">
+		<!-- Create an Temp directory for downloading and unziping the data. -->
+		<mkdir dir="${temp.dir}"/>
+		<property name="unzip.dir" location="${temp.dir}"/>
+		<!-- Call the Download from Source API Gateway to download the Archive to the Local Machine -->
+		<antcall target="downloadFromSourceAPIGateway"/>
+		<!-- Set the Local repo path to the Temp Dir now-->
+		<property name="apigateway.repo.localRepo.path" value="${temp.dir}"/>
+		<!-- Call the target to create repo from this local repo -->
+		<antcall target="createRepoFromLocalRepo"/>
+		<delete dir="${temp.dir}"/>
+	</target>
+	
+	<target name="clean" description="This will generate required composites for Integration Server assets"> 
+	  <delete dir="${temp.dir}"/>
+	  <delete dir="${apiGateway.repo}/${APIGatewayNamespace}"/>
+	</target>
+	
+	<target name="validateParameters">
+		<if>
+            <isset property="build.output.dir" />
+            <then>
+            </then>
+        	<else>
+        		<fail message="Required property 'build.output.dir' is not set" />
+        	</else>
+        </if>
+		
+		<if>
+            <isset property="apigateway.buildLocalRepoOnly" />
+            <then>
+            </then>
+        	<else>
+        		<property name="apigateway.buildLocalRepoOnly" value="false"/>
+        	</else>
+        </if>
+	</target>
+	
+</project>

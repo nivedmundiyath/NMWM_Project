@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project default="build" basedir="."
+	name="webMethods Business Process Model">
+
+	<!-- the more advanced ant tasks (for, if) require this: -->
+	<taskdef classpath="../../lib/ant/ant-contrib-1.0b3.jar"
+		resource="net/sf/antcontrib/antlib.xml" />
+
+	<macrodef name="iterate-projects">
+		<attribute name="target" />
+		<attribute name="projectDir" />
+		<attribute name="sourceDir" />
+		<sequential>
+			<subant target="@{target}" inheritAll="true" inheritRefs="true" failonerror="false">
+				<fileset dir="@{sourceDir}/@{projectDir}" includes="**/build.xml" />
+			</subant>
+		</sequential>
+	</macrodef>
+
+
+	<macrodef name="iterate">
+		<attribute name="target" />
+		<attribute name="sourceDir" />
+		<sequential>
+			<subant target="@{target}" inheritAll="true" inheritRefs="true" failonerror="false">
+				<fileset dir="@{sourceDir}" includes="**/build.xml" />
+			</subant>
+		</sequential>
+	</macrodef>
+
+	<target name="build-projects">
+		<echo message="Master Process ACDL Build Running" />
+		<if>
+			<equals arg1="${build.output.dir}" arg2=""/>
+			<then>
+				<var name="build.output.dir" unset="true"/>
+				<property name="build.output.dir" value="${basedir}"/>
+			</then>
+		</if>
+		<for list="${build.source.dir}" delimiter=";" param="sourceDir">
+			<sequential>
+				<iterate target="build-bpm-acdl-project" sourceDir="@{sourceDir}"/>
+			</sequential>
+		</for>
+		<for list="${build.source.project.dir}" delimiter=";" param="projectDir">
+			<sequential>
+				<iterate target="build-bpm-acdl-project" sourceDir="@{projectDir}"/>
+			</sequential>
+		</for>
+	</target>
+
+	<target name="loadMasterPath">
+		<path id="master-classpath">
+			<fileset dir="lib">
+				<include name="wm-process-build.jar" />				
+				<include name="gf.javax.mail_1.4.4.jar" />
+			</fileset>
+			<fileset dir="${sag.install.dir}/common/lib/">
+				<include name="wm-acdl-common.jar" />
+				<include name="wm-isclient.jar" />
+				<include name="wm-bpm-processmodel.jar" />
+				<include name="wm-metadata-core.jar" />
+				<include name="wm-scg-core.jar" />
+				<include name="wm-g11nutils.jar" />
+				<include name="bpm-model-api.jar" />
+			</fileset>
+
+			<fileset dir="${sag.install.dir}/common/lib/ext">
+				<include name="xercesImpl.jar" />
+				<include name="xml-apis.jar" />
+				<include name="jakarta-oro.jar" />
+				<include name="jackson-annotations.jar" />
+				<include name="jackson-core.jar" />
+				<include name="jackson-databind.jar" />
+				<include name="commons-io.jar" />
+				<include name="commons-lang.jar" />
+				<include name="activation.jar" />
+			</fileset>
+
+			<fileset dir="${sag.install.dir}/common/lib/glassfish">
+				<include name="gf.jaxb-api.jar" />
+				<include name="gf.jaxb-osgi.jar" />
+			</fileset>
+
+		</path>
+		<property name="master-classpath" refid="master-classpath" />
+		<antcall target="build-projects" inheritAll="true" inheritRefs="true"/>
+	</target>
+
+	<target name="loadProperties" if="loadBuildProperties">
+		<property file="../master_build/build.properties" />
+		<echo message="${sag.install.dir}" />
+		<antcall target="loadMasterPath" />
+	</target>
+	<target name="check">
+		<property name="check.build.output.dir" value="$${build.output.dir}" />
+		<property name="check.sag.install.dir" value="$${sag.install.dir}" />
+		<property name="check.build.version" value="$${build.version}" />
+		<condition property="loadBuildProperties">
+			<or>
+				<equals arg1="${check.build.output.dir}" arg2="${build.output.dir}" />
+				<equals arg1="${check.sag.install.dir}" arg2="${sag.install.dir}" />
+				<equals arg1="${check.build.version}" arg2="${build.version}" />
+			</or>
+		</condition>
+		
+		<if>
+			<equals arg1="${loadBuildProperties}" arg2="$${loadBuildProperties}" />
+			<then>
+				<antcall target="loadMasterPath" />
+			</then>
+			<else>
+				<antcall target="loadProperties" />
+			</else>
+		</if>
+	</target>
+
+	<target name="compile">
+		<javac destdir="../bin/" srcdir="../src" classpathref="master-classpath" />
+	</target>
+
+	<target name="clean"></target>
+
+
+	<target name="build" 
+		description="This task will generates the acdls for the process from the passed configurations">
+		<antcall target="check" />
+	</target>
+
+</project>

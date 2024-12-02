@@ -1,0 +1,4 @@
+Testsuite: com.softwareag.utf.runner.UTFSuiteCompositeRunner$init
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.259 sec
+
+Testcase: 0.0 NMBuildTest:wmCalc( 24111703431724230) took 0.084 sec

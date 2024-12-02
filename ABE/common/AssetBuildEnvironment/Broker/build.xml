@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+
+<project name ="deployer" default="build" basedir=".">
+
+<property name="wmclient.jar" value="${sag.install.dir}/common/lib/wm-brokerclient.jar"/>
+<property name="activation.jar" value="${sag.install.dir}/common/lib/ext/activation.jar"/>
+<property name="xml-apis.jar" value="${sag.install.dir}/common/lib/ext/xml-apis.jar"/>
+<property name="xercesImpl.jar" value="${sag.install.dir}/common/lib/ext/xercesImpl.jar"/>
+<property name="g11nutil.jar" value="${sag.install.dir}/common/lib/wm-g11nutils.jar"/>
+<property name="wm-acdl-common.jar" value="${sag.install.dir}/common/lib/wm-acdl-common.jar"/>
+<property name="wm-broker-acdl.jar" value="${sag.install.dir}/common/lib/wm-broker-acdl.jar"/>
+<property name="wmjmsclient.jar" value="${sag.install.dir}/common/lib/wm-jmsclient.jar"/>
+<property name="jms.jar" value="${sag.install.dir}/common/lib/glassfish/gf.javax.jms.jar"/>
+<property name="gf.jaxb-api.jar" value="${sag.install.dir}/common/lib/glassfish/gf.jaxb-api.jar"/>
+<property name="gf.jaxb-core.jar" value="${sag.install.dir}/common/lib/glassfish/gf.jaxb-core.jar"/>
+<property name="gf.jaxb-impl.jar" value="${sag.install.dir}/common/lib/glassfish/gf.jaxb-impl.jar"/>
+<property name="gf.jaxb-xjc.jar" value="${sag.install.dir}/common/lib/glassfish/gf.jaxb-xjc.jar"/>
+
+<path id="deployer.classpath">
+  <pathelement path="${source.dir}"  />
+  <pathelement path="${classes.dir}" />
+  <pathelement path="${wmclient.jar}" />
+  <pathelement path="${activation.jar}" />
+  <pathelement path="${xml-apis.jar}" />
+  <pathelement path="${xercesImpl.jar}" />
+  <pathelement path="${wm-acdl-common.jar}" />
+  <pathelement path="${wm-broker-acdl.jar}" />
+  <pathelement path="${g11nutil.jar}" />
+  <pathelement path="${wmjmsclient.jar}" />
+  <pathelement path="${jms.jar}" />
+  <pathelement path="${gf.jaxb-api.jar}" />
+  <pathelement path="${gf.jaxb-core.jar}" />
+  <pathelement path="${gf.jaxb-impl.jar}" />
+  <pathelement path="${gf.jaxb-xjc.jar}" />
+</path>
+
+<target name="build">
+    <java classname="com.softwareag.broker.deployer.BrokerACDLCreation"
+          failonerror="true"
+          fork="true">
+         <jvmarg value="-Xmx1024M" />  
+         <arg line="-build.output.dir ${build.output.dir}"/>
+         <arg line="-build.source.dir ${build.source.dir}"/>
+         <arg line="-build.version ${build.version}"/>
+         <classpath>
+            <path refid="deployer.classpath"/>
+        </classpath>
+    </java>
+</target>
+
+
+</project>

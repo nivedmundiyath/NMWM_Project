@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project default="build.composites" basedir="." name="cc.abe">
+	<description>
+			CommandCentral cloud migration assets build
+	</description>
+
+	<dirname file="${ant.file.cc.abe}" property="cc.abe.home" />
+	
+	<!-- Default directory assignments --> 
+	<property name="sag.install.dir" location="${cc.abe.home}/../../.." />	
+	<property name="build.output.dir" location="${cc.abe.home}/build" />
+	<property name="build.source.dir" location="${cc.abe.home}" />
+	
+	<!-- Default input params assignments --> 
+	<property name="build.version" value="10.11" />
+	<property name="runtime.version" value="10.11" />
+	<property name="cc.template.env.type" value="default" />
+	
+	<property name="common.lib.dir" location="${sag.install.dir}/common/lib" />
+	
+	<property name="cc.shared.bundles.dir" location="${sag.install.dir}/common/runtime/bundles/cc-shared/eclipse/plugins" />
+
+	<property name="ext.bundles.dir" location="${sag.install.dir}/common/runtime/bundles/ext/eclipse/plugins" />
+	
+	<property name="cc.namespace" value="CC" />
+	<property name="cc.build.output.dir" location="${build.output.dir}/${cc.namespace}" />
+  
+  	<path description="" id="ant.classpath">
+		<fileset dir="${sag.install.dir}" includes="common/lib/ant/**/*.jar" /> 
+	</path>
+		
+	<taskdef resource="net/sf/antcontrib/antlib.xml" classpathref="ant.classpath" />
+
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+	<!-- SPM-5098 -->
+	<timestampselector outputsetid="orderedByTimestampClasspath" count="99999" pathSep="${path.separator}">
+		<path id="classpath">
+			<fileset dir="${common.lib.dir}">
+				<include name="wm-acdl-common.jar" />
+			</fileset>
+			<fileset dir="${common.lib.dir}/ext">			
+				<include name="slf4j-api.jar" />
+				<include name="slf4j-log4j.jar" />
+				<include name="log4j/**" />
+				<include name="commons-io.jar" />			
+				<include name="commons-lang.jar" />	
+			</fileset>
+			<fileset dir="${cc.shared.bundles.dir}">
+				<include name="com.softwareag.plm.cc.spm.util_*.jar" />
+				<include name="com.softwareag.plm.cc.spm.composite.template.tools_*.jar" />
+				<include name="com.softwareag.plm.cc.spm.abe_*.jar" />
+				<include name="com.softwareag.plm.cc.spm.composite.template.common_*.jar" />
+				<include name="com.softwareag.plm.cc.spm.common_*.jar" /> 
+			</fileset>
+			<fileset dir="${ext.bundles.dir}">
+				<include name="org.yaml.snakeyaml_*.jar" />
+			</fileset>
+			<pathelement location="${sag.install.dir}/common/AssetBuildEnvironment/CC"/> 
+			
+		</path>
+	</timestampselector>
+	
+	<!-- Check if mandatory properties for the CC asset build are set -->
+	<target name="validate" >
+		<fail unless="build.source.dir" message="Required property 'build.source.dir' is not set" />
+	</target>	
+
+	<target name="build.composites" depends="validate">
+		<echo>Ensure CC output directory: ${cc.build.output.dir}</echo>
+		<mkdir dir="${cc.build.output.dir}" />
+
+		<java classname="com.softwareag.platform.management.deployment.abe.CommandCentralAssetBuilder" classpathref="orderedByTimestampClasspath" failonerror="true" fork="true">
+			<sysproperty key="build.source.dir" value="${build.source.dir}" />
+			<sysproperty key="build.output.dir" value="${cc.build.output.dir}" />
+			<sysproperty key="build.version" value="${build.version}" />
+			<sysproperty key="runtime.version" value="${runtime.version}" />			
+			<sysproperty key="cc.template.env.type" value="${cc.template.env.type}" />	 
+		</java>
+	</target>	
+
+	<target name="clean">
+		<delete dir="${cc.build.output.dir}" />
+	</target>
+</project>

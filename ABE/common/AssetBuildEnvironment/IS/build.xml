@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project default="build" basedir="." name="webMethods Integration Server">
+
+    <property name="IS.namespace" value="IS"/>    
+    <property name="run.main.class.name" value="com.wm.app.b2b.server.deployer.SolutionAssembler"/>    
+    <property name="IS.ant.lib.dir" value="${basedir}/lib" />
+    <property name="IS.ant.lib.updates.dir" value="${IS.ant.lib.dir}/updates" />
+
+    <path id="master-classpath">
+
+		<fileset dir="${IS.ant.lib.updates.dir}">
+			<include name="*.jar"/>
+		</fileset>
+
+		<fileset dir="${IS.ant.lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+
+        <fileset dir="${sag.install.dir}/common/lib">
+            <include name="saglic.jar"/>
+            <include name="wm-acdl-common.jar"/>
+            <include name="wm-g11nutils.jar"/>
+            <include name="wm-isclient.jar"/>
+            <include name="wm-scg-audit.jar"/>
+            <include name="wm-scg-core.jar"/>
+    	    <include name="wm-scg-security.jar"/>
+            <include name="wsdl4j.jar"/>            
+            <include name="wm-brokerclient.jar"/>            
+        </fileset>
+
+        <fileset dir="${sag.install.dir}/common/lib">
+            <include name="CentraSiteFramework*.jar"/>
+            <include name="ehcache-ee.jar"/>
+        </fileset>
+
+        <fileset dir="${sag.install.dir}/common/lib/ext">
+            <include name="activation.jar"/>
+            <include name="commons-lang3.jar"/>
+            <include name="ical4j.jar"/>
+            <include name="icu4j.jar"/>
+            <include name="jdom.jar"/>
+            <include name="xml-apis.jar"/>  
+            <include name="xercesImpl.jar"/>
+            <include name="derby.jar"/>
+            <include name="dd-cjdbc.jar"/>
+            <include name="jackson-core.jar"/>
+            <include name="jakarta-oro.jar"/>
+            <include name="jsch.jar"/> 
+			<include name="maverick-ssh-client.jar"/> 
+            <include name="jzlib.jar"/>
+			<include name="paho-client-mqttv3.jar"/>
+		</fileset>
+
+        <fileset dir="${sag.install.dir}/common/lib/ext/log4j">
+            <include name="log4j-api.jar"/>
+        </fileset>
+		
+        <fileset dir="${sag.install.dir}/common/lib/glassfish">
+            <include name="gf.jakarta.mail.jar"/>
+			<include name="gf.jackson-core-asl.jar"/>			
+            <include name="gf.javax.jms.jar"/>
+            <include name="gf.jakarta.resource.jar"/>
+            <include name="gf.jakarta.transaction.jar"/>
+        </fileset>
+
+        <fileset dir="${sag.install.dir}/WS-Stack/lib">
+            <include name="wsstack-client.jar"/>
+        </fileset>
+
+     </path>
+
+
+	<target name="validate" description="Validates that the all required properties exist">
+	    <fail unless="sag.install.dir" message="Required property 'sag.install.dir' is not set" />
+	    <fail unless="build.version" message="Required property 'build.version' is not set" />
+	    <fail unless="build.output.dir" message="Required property 'build.output.dir' is not set" />
+
+        <if>
+            <isset property="build.source.project.dir" />
+            <then>
+            </then>
+        	<else>
+        		<fail unless="build.source.dir" message="Required property 'build.source.dir' is not set" />
+        	</else>
+        </if>
+
+        <if>
+            <isset property="build.source.dir" />
+            <then>
+            </then>
+        	<else>
+        		<fail unless="build.source.project.dir" message="Required property 'build.source.project.dir' is not set" />
+        	</else>
+        </if>
+
+        <if>
+            <isset property="is.acdl.config.dir" />
+            <then>
+            </then>
+        	<else>
+        	   <property name="is.acdl.config.dir" value=""/>
+        	</else>
+        </if>
+
+	</target>
+
+    <target name="build" depends="validate" description="This will generate required composites for Integration Server assets">    	
+		<!-- check multi project folders  -->
+		<if>
+			<isset property="IS.build.source.dir" />
+			<then>
+				<!-- look into IS.build.source.dir folders -->
+				<antcall target="iterate_multi_project_folders">
+					<param name="multi.projects.folder.list" value="${IS.build.source.dir}" />
+				</antcall>
+			</then>
+			<else>
+				<!-- look into build.source.dir folders -->
+				<antcall target="iterate_multi_project_folders">
+					<param name="multi.projects.folder.list" value="${build.source.dir}" />
+				</antcall>
+			</else>
+		</if>
+
+		<!-- check single project folders  -->
+		<if>
+			<isset property="IS.build.source.project.dir" />
+			<then>
+				<!-- look into IS.build.source.project.dir folders -->
+				<antcall target="iterate_single_project_folders">
+					<param name="single.projects.folder.list" value="${IS.build.source.project.dir}" />
+				</antcall>
+			</then>
+			<else>
+				<!-- look into build.source.project.dir folders -->
+				<antcall target="iterate_single_project_folders">
+					<param name="single.projects.folder.list" value="${build.source.project.dir}" />
+				</antcall>
+			</else>
+		</if>    	
+    </target>
+    
+	<target name="iterate_multi_project_folders">
+		<foreach list="${multi.projects.folder.list}"
+		         target="build_projects"
+		         param="source.dir"				 
+		         delimiter=";">			
+			<param name="sag.install.dir" value="${sag.install.dir}"/>
+			<param name="build.output.dir" value="${build.output.dir}"/>
+			<param name="build.version" value="${build.version}"/>
+			<param name="build.number" value="${build.number}"/>		
+			<param name="max.mem" value="${max.mem}"/>
+			<param name="is.acdl.config.dir" value="${is.acdl.config.dir}"/>
+		</foreach>
+	</target>
+
+	<target name="iterate_single_project_folders">
+		<foreach list="${single.projects.folder.list}"
+		         target="build_project"
+		         param="source.project.dir"
+		         delimiter=";">
+			<param name="sag.install.dir" value="${sag.install.dir}"/>
+			<param name="build.output.dir" value="${build.output.dir}"/>
+			<param name="build.version" value="${build.version}"/>			
+			<param name="build.number" value="${build.number}"/>			
+			<param name="max.mem" value="${max.mem}"/>
+			<param name="is.acdl.config.dir" value="${is.acdl.config.dir}"/>
+		</foreach>
+	</target>
+	
+	<target name="build_projects">
+		<antcall target="generate-composites">
+			<param name="watt.server.homeDir" value="${source.dir}"/>
+			<param name="from.source.dir" value="true"/>
+			<param name="from.source.project.dir" value="false"/>
+			<param name="sag.install.dir" value="${sag.install.dir}"/>
+			<param name="is.acdl.config.dir" value="${is.acdl.config.dir}"/>
+		</antcall>
+	</target>
+
+	<target name="build_project">
+		<antcall target="generate-composites">
+			<param name="watt.server.homeDir" value="${source.project.dir}"/>
+			<param name="from.source.dir" value="false"/>
+			<param name="from.source.project.dir" value="true"/>
+			<param name="sag.install.dir" value="${sag.install.dir}"/>
+			<param name="is.acdl.config.dir" value="${is.acdl.config.dir}"/>
+		</antcall>
+	</target>
+
+	<target name="generate-composites" depends="" description="This task will generate required composites for the passed configurations">
+		<java fork="true" classname="${run.main.class.name}" classpathref="master-classpath" failonerror="true">    	
+		   <jvmarg value="${max.mem}" />
+		   <sysproperty key="is.acdl.config.dir" value="${is.acdl.config.dir}"/>
+		   <sysproperty key="build.output.dir" value="${build.output.dir}"/>
+		   <sysproperty key="build.version" value="${build.version}"/>	   
+		   <sysproperty key="watt.server.homeDir" value="${watt.server.homeDir}"/>
+    	   	   <sysproperty key="watt.server.from.source.dir" value="${from.source.dir}"/>
+    	   	   <sysproperty key="watt.server.from.source.project.dir" value="${from.source.project.dir}"/>
+           	   <sysproperty key="watt.server.deployer.versionTag" value="${build.version}"/>
+		   <sysproperty key="IS.useRootDir" value="true"/>
+		   <sysproperty key="IS.output.dir.usenamespace" value="true"/>
+    	   	   <sysproperty key="watt.server.deployer.exportType" value="all"/>
+    	   	   <sysproperty key="watt.server.packages.nsplugins.dir" value="${basedir}/nsplugins"/>
+			   <sysproperty key="java.library.path" value="${sag.install.dir}/common/bin"/>
+        	</java>
+    </target>
+    
+    <target name="clean">
+		<delete dir="${build.output.dir}/${IS.namespace}" />
+    </target>
+ 
+</project>

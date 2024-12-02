@@ -1,0 +1,164 @@
+<html>
+<head>
+
+<title>test dialog.js</title>
+<script src="/ui/scripts/general.js"></script>
+<script src="/ui/scripts/dialog.js"></script>
+
+<script>
+
+function assertGetInputValue(form, input, expected) {
+    var actual = getInputValue(document.forms[form].elements[input]);
+    if (actual != expected) {
+        output("expected value of '" + form + "." + input + "' to be '" + expected + "' but was '" + actual + "'");
+    }
+}
+
+function assertSetGetInputValue(form, input, value, expected) {
+    setInputValue(document.forms[form].elements[input], value);
+    var actual = getInputValue(document.forms[form].elements[input]);
+    if (expected != null) {
+        if (actual != expected)
+            output("set value of '" + form + "." + input + "' to be '" + value + "' but get value returns '" + actual + "' (expected '" + expected + "')");
+    } else {
+        if (actual != value)
+            output("set value of '" + form + "." + input + "' to be '" + value + "' but get value returns '" + actual + "'");
+    }
+}
+
+function testGetSetInputValue() {
+    //assertGetInputValue("f1", "select-single", null); // expected: one
+    assertGetInputValue("f1", "select-multiple", null);
+    assertGetInputValue("f1", "radio", null);
+    assertGetInputValue("f1", "checkbox", null);
+    assertGetInputValue("f1", "checkbox-multiple", null);
+    assertGetInputValue("f1", "text", null);
+    assertGetInputValue("f1", "text-multiple", null);
+    assertGetInputValue("f1", "textarea", null);
+    
+    assertSetGetInputValue("f1", "select-single", "two");
+    assertSetGetInputValue("f1", "select-multiple", "two");
+    assertSetGetInputValue("f1", "radio", "two");
+    assertSetGetInputValue("f1", "checkbox", "true");
+    assertSetGetInputValue("f1", "checkbox-multiple", "two");
+    assertSetGetInputValue("f1", "text", "two");
+    assertSetGetInputValue("f1", "text-multiple", "two");
+    assertSetGetInputValue("f1", "textarea", "two");
+    
+    assertSetGetInputValue("f1", "select-single", "one,two,three", "three");
+    assertSetGetInputValue("f1", "select-multiple", "one,two,three");
+    assertSetGetInputValue("f1", "radio", "one,two,three", "three");
+    //assertSetGetInputValue("f1", "checkbox", "false"); // expected: undefiened
+    assertSetGetInputValue("f1", "checkbox-multiple", "one,two,three");
+    assertSetGetInputValue("f1", "text", "one,two,three");
+    assertSetGetInputValue("f1", "text-multiple", "one,two,three");
+    assertSetGetInputValue("f1", "textarea", "one,two,three");
+}
+
+function assertIsSetInputEnabled(form, input, before, after) {
+    var actual = isInputEnabled(document.forms[form].elements[input]);
+    if (actual != before) {
+        output("expected value of '" + form + "." + input + "' to be '" + before + "' but was '" + actual + "'");
+    }
+    
+    setInputEnabled(document.forms[form].elements[input], after);
+    
+    actual = isInputEnabled(document.forms[form].elements[input]);
+    if (actual != after) {
+        output("expected value of '" + form + "." + input + "' to be '" + after + "' but was '" + actual + "'");
+    }
+}
+
+function testEnableDisableInput() {
+    assertIsSetInputEnabled("f2", "text", true, false);
+    assertIsSetInputEnabled("f2", "password", true, false);
+    assertIsSetInputEnabled("f2", "button", true, false);
+    assertIsSetInputEnabled("f2", "radio", true, false);
+    assertIsSetInputEnabled("f2", "radio-group", true, false);
+    assertIsSetInputEnabled("f2", "checkbox", true, false);
+    assertIsSetInputEnabled("f2", "checkbox-group", true, false);
+    assertIsSetInputEnabled("f2", "hidden", true, false);
+    assertIsSetInputEnabled("f2", "textarea", true, false);
+    assertIsSetInputEnabled("f2", "select", true, false);
+    assertIsSetInputEnabled("f2", "auto", true, false);
+}
+
+function test() {
+    output("running...");
+    
+    testGetSetInputValue();
+    testEnableDisableInput();
+    
+    output("...finished");
+}
+
+function output(s) {
+    document.getElementById("output").innerHTML += s + "<br />";
+}
+</script>
+
+</head>
+<body onload="test()">
+
+<div id="output"></div>
+
+<form name="f1">
+
+<select name="select-single">
+    <option value="one">one</option>
+    <option value="two">two</option>
+    <option value="three">three</option>
+</select>
+
+<select name="select-multiple" multiple="true">
+    <option value="one">one</option>
+    <option value="two">two</option>
+    <option value="three">three</option>
+</select>
+
+<input type="radio" name="radio" value="one" />
+<input type="radio" name="radio" value="two" />
+<input type="radio" name="radio" value="three" />
+
+<input type="checkbox" name="checkbox" />
+
+<input type="checkbox" name="checkbox-multiple" value="one" />
+<input type="checkbox" name="checkbox-multiple" value="two" />
+<input type="checkbox" name="checkbox-multiple" value="three" />
+
+<input type="text" name="text" />
+
+<input type="text" name="text-multiple" />
+<input type="text" name="text-multiple" />
+<input type="text" name="text-multiple" />
+
+<textarea name="textarea"></textarea>
+
+</form>
+
+<form name="f2">
+    <input name="text" />
+    <input type="password" name="password" />
+    <input type="button" name="button" />
+    <input type="radio" name="radio" />
+    <input type="radio" name="radio-group" />
+    <input type="radio" name="radio-group" />
+    <input type="checkbox" name="checkbox" />
+    <input type="checkbox" name="checkbox-group" />
+    <input type="checkbox" name="checkbox-group" />
+    <input type="hidden" name="hidden" />
+    <textarea name="textarea"></textarea>
+    <select name="select"></select>
+    <input type="hidden" name="auto" enabled="true" />
+</form>
+<script>
+document.forms["f2"].elements["auto"].isEnabled = function() {
+    return (this.getAttribute("enabled") == "true");
+};
+document.forms["f2"].elements["auto"].enable = function(enable) {
+    this.setAttribute("enabled", (enable == true ? "true" : "false"));
+};
+</script>
+
+</body>
+</html>

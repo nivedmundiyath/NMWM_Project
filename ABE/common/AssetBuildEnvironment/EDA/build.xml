@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project default="build.composites" basedir="." name="webMethods Event Driven Architecture Lifecycle Build">
+
+	<property name="common.lib.dir" location="${sag.install.dir}/common/lib" />
+	<property name="common.lib.glassfish.dir" location="${sag.install.dir}/common/lib/glassfish" />
+	<property name="eda.lib.dir" location="${basedir}/lib" />
+	<property name="EDA.namespace" value="EDA" />
+	<property name="EDA.build.output.dir" value="${build.output.dir}/${EDA.namespace}" />
+
+	<path id="classpath">
+		<fileset dir="${common.lib.dir}">
+			<include name="wm-acdl-common.jar" />
+		</fileset>
+		<fileset dir="${common.lib.dir}/ext">
+			<include name="commons-codec.jar" />
+			<include name="commons-io.jar" />
+			<include name="activation.jar" />
+		</fileset>
+		<fileset dir="${eda.lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${common.lib.glassfish.dir}">
+			<include name="gf.jaxb-*.jar" />
+		</fileset>
+	</path>
+
+	<!-- Check if mandatory properties are set -->
+	<target name="validate">
+		<fail unless="sag.install.dir" message="Required property 'sag.install.dir' is not set" />
+		<fail unless="build.version" message="Required property 'build.version' is not set" />
+		<fail unless="build.output.dir" message="Required property 'build.output.dir' is not set" />
+
+		<if>
+			<and>
+				<not>
+					<isset property="build.source.project.dir" />
+				</not>
+				<not>
+					<isset property="build.source.dir" />
+				</not>
+			</and>
+			<then>
+				<fail message="At least one of ('build.source.project.dir', 'build.source.dir') must be specified." />
+			</then>
+		</if>
+	</target>
+
+	<target name="build.composites" depends="validate">
+		<mkdir dir="${EDA.build.output.dir}" />
+
+		<!-- ${build.source.dir} denotes a list of directories each of which contains Event Types projects for building -->
+		<if>
+			<and>
+				<isset property="build.source.dir" />
+				<not>
+					<equals arg1="${build.source.dir}" arg2="" />
+				</not>
+			</and>
+			<then>
+				<for param="projects.parent.dir">
+					<path>
+						<pathelement path="${build.source.dir}" />
+					</path>
+					<!-- Iterate over the project directories inside the parent directory -->
+					<sequential>
+						<for param="project.dir">
+							<dirset dir="@{projects.parent.dir}" includes="*" />
+							<sequential>
+								<invoke.composite.builder project.dir="@{project.dir}" />
+							</sequential>
+						</for>
+					</sequential>
+				</for>
+			</then>
+		</if>
+
+		<!-- ${build.source.project.dir} denotes a list of Event Types projects for building -->
+		<if>
+			<and>
+				<isset property="build.source.project.dir" />
+				<not>
+					<equals arg1="${build.source.project.dir}" arg2="" />
+				</not>
+			</and>
+			<then>
+				<for param="project.dir">
+					<path>
+						<pathelement path="${build.source.project.dir}" />
+					</path>
+					<sequential>
+						<invoke.composite.builder project.dir="@{project.dir}" />
+					</sequential>
+				</for>
+			</then>
+		</if>
+	</target>
+
+	<macrodef name="invoke.composite.builder">
+		<attribute name="project.dir" />
+		<sequential>
+		<echo message="Building project from directory &quot;@{project.dir}&quot;."/>
+			 <java classname="com.softwareag.eda.deployment.abe.EDACompositeBuilder" classpathref="classpath" failonerror="true" fork="true">
+				<!--jvmarg line="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005" /-->
+				<sysproperty key="build.input.dir" value="@{project.dir}" />
+				<sysproperty key="build.output.dir" value="${EDA.build.output.dir}" />
+				<sysproperty key="build.version" value="${build.version}" />
+			</java>
+		</sequential>
+	</macrodef>
+
+	<target name="clean">
+		<delete dir="${EDA.build.output.dir}" />
+	</target>
+</project>

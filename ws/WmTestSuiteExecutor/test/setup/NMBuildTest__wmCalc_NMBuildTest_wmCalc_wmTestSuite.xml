@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webMethodsTestSuite description="" name="TestSuite">
+    <webMethodsTestCase description="This test case was created automatically using a wrapper" name="NMBuildTest:wmCalc( 24111703431724230)">
+        <service folder="NMBuildTest" name="wmCalc">
+            <input>
+                <file filename="../test/data/NMBuildTest_wmCalc_pipein_24111703431724230.xml"/>
+            </input>
+            <expected>
+                <file filename="../test/data/NMBuildTest_wmCalc_pipeout_24111703431724230.xml"/>
+            </expected>
+        </service>
+    </webMethodsTestCase>
+</webMethodsTestSuite>

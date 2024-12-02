@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report>
+    <Messages type="INFO">
+        <message deploymentProject="">Deployer Server running on host:port localhost:5557</message>
+        <message deploymentProject="">Deployer Server authenticated using user Administrator</message>
+        <message deploymentProject="">Successfully created Integration Server alias ATS_local</message>
+        <message deploymentProject="">Installed WmDeployerResource on the IS Server Alias ATS_local</message>
+        <message deploymentProject="">Successfully pinged Integration Server Alias ATS_local. Version reported was pong</message>
+    </Messages>
+    <Messages type="ERROR"/>
+</Report>

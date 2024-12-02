@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="BuildMFT" default="build" basedir=".">
+
+ <property name="build_number" value = "${build.version}"/>
+ <property name="java_classname" value = "com.softwareag.mft.acdl.ACDLGenerator"/>
+
+ <path id="mft.classpath">
+  <pathelement path="${sag.install.dir}/common/lib/wm-isclient.jar"  />      <!-- for jars in common-->
+  <pathelement path="${sag.install.dir}/common/lib/wm-scg-core.jar"  />
+  <pathelement path="${sag.install.dir}/common/lib/ext/jdom.jar"  />
+  <pathelement path="${sag.install.dir}/common/lib/ext/activation.jar"  />
+  <pathelement path="${sag.install.dir}/common/lib/glassfish/gf.jakarta.mail.jar"  />
+  <pathelement path="${sag.install.dir}/common/lib/glassfish/gf.jaxb-api.jar"  />
+  <pathelement path="${sag.install.dir}/common/lib/glassfish/gf.jaxb-osgi.jar"  />
+  <pathelement path="${sag.install.dir}/common/lib/glassfish/gf.webservices-api-osgi.jar"  />
+  <pathelement path="lib/mftclient.jar" />
+  <pathelement path="lib/mftutil.jar" />
+ </path>
+
+ <target name="clean">
+	<delete dir="${build.output.dir}/MFT" />
+ </target>
+
+ <target name="init">
+	<mkdir dir="${build.output.dir}/MFT" />
+ </target>
+	
+ <target name="build" depends="init">
+  <java classname="${java_classname}" failonerror="true" fork="true">
+	<jvmarg value="-Xdebug" />
+	<!--jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=20034"/-->
+	<sysproperty key="mft.source" value="${build.source.dir}"/>
+	<sysproperty key="mft.solution" value="${build.source.project.dir}"/>
+	<sysproperty key="mft.buildNumber" value="${build.version}"/>
+	<sysproperty key="mft.target" value="${build.output.dir}"/>
+	<classpath>
+		<path refid="mft.classpath"/>
+	</classpath>
+    </java>
+ </target>
+
+</project>
