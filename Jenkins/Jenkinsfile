@@ -38,8 +38,8 @@ def jsonData,WsDir
 				
 				ws ("${WsDir}"){
 					checkout scmGit(
-							branches: [[name: "${gitABE_branch}"]],
-							userRemoteConfigs: [[credentialsId: "${git_credId}",
+							branches: [[name: "${jsonData.gitABE_branch}"]],
+							userRemoteConfigs: [[credentialsId: "${jsonData.git_credId}",
 							url: "${git_url_ABE}"]])
 					
 					}
