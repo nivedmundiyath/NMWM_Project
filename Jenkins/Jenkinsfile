@@ -5,20 +5,13 @@ def jsonData,WsDir
 	
 
     stages {
-		
-		
+
         stage('Build') {
             steps {
 			
 			
 			script{
 			
-				echo 'Workspace directory'
-				
-				WsDir = "${workspace}"
-				WsDir = WsDir.replaceAll("\\\\", "/")
-				
-				echo "${WsDir}"
 				
 				echo 'Getting customJenkinsParamaters ..'
 				
@@ -31,6 +24,25 @@ def jsonData,WsDir
                 
 				git_url = "https://github.com/nivedmundiyath/${jsonData.gitRepowMPackage}.git"
 				
+				git_url_ABE = "https://github.com/nivedmundiyath/${jsonData.gitRepowMABE}.git"
+				
+				echo 'Workspace directory'
+				
+				// WsDir = "${workspace}"
+				// WsDir = WsDir.replaceAll("\\\\", "/")
+				
+				
+				echo 'Getting ABE and ws from GIT SCM'
+				
+				WsDir = "C:/JenkinsABE"
+				
+				ws ("${WsDir}"){
+					checkout scmGit(
+							branches: [[name: "${gitABE_branch}"]],
+							userRemoteConfigs: [[credentialsId: "${git_credId}",
+							url: "${git_url_ABE}"]])
+					
+					}
 				
 				}
 			
