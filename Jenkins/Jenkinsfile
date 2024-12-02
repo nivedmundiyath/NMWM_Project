@@ -48,9 +48,9 @@ def jsonData,WsDir
 			
 				echo 'Calling build pipeline..'
 				
-			 build job: 'NMBuildAutomationV2_build', parameters: [string(name: 'source_path', value: "${WsDir}/${jsonData.source_path}"), string(name: 'target_path', value: "${WsDir}/${jsonData.target_path}"),string(name: 'abe_path', value: "${WsDir}/${jsonData.abe_path}"), string(name: 'git_url', value: "${git_url}"), string(name: 'git_credId', value: "${jsonData.git_credId}"), string(name: 'git_branch', value: "${jsonData.git_branch}")]
+			 build job: 'NMBuildAutomationV3_build', parameters: [string(name: 'source_path', value: "${WsDir}/${jsonData.source_path}"), string(name: 'target_path', value: "${WsDir}/${jsonData.target_path}"),string(name: 'abe_path', value: "${WsDir}/${jsonData.abe_path}"), string(name: 'git_url', value: "${git_url}"), string(name: 'git_credId', value: "${jsonData.git_credId}"), string(name: 'git_branch', value: "${jsonData.git_branch}")]
 			
-			// build job: 'NMBuildAutomationV2_build', parameters: [ string(name: 'git_url', value: "${git_url}"), string(name: 'git_credId', value: "${jsonData.git_credId}"), string(name: 'git_branch', value: "${jsonData.git_branch}")]
+			// build job: 'NMBuildAutomationV3_build', parameters: [ string(name: 'git_url', value: "${git_url}"), string(name: 'git_credId', value: "${jsonData.git_credId}"), string(name: 'git_branch', value: "${jsonData.git_branch}")]
 				
             }
         }
@@ -60,9 +60,9 @@ def jsonData,WsDir
 			
 				echo 'Calling deploy pipeline..'
 				
-			 build job: 'NMBuildAutomationV2_deploy', parameters: [string(name: 'deployerHost', value: "${jsonData.deployerHost}"), string(name: 'deployerPort', value: "${jsonData.deployerPort}"),string(name: 'targetHost', value: "${jsonData.targetHost}"), string(name: 'targetPort', value: "${jsonData.targetPort}"), string(name: 'wM_package', value: "${jsonData.wM_package}"),string(name: 'targetWMVersion', value: "${jsonData.targetWMVersion}"), string(name: 'UseSSLTargetIS', value: "${jsonData.UseSSLTargetIS}"), string(name: 'target_path', value: "${WsDir}/${jsonData.target_path}"), string(name: 'deployerScript_path', value: "${WsDir}/${jsonData.deployerScript_path}")]
+			 build job: 'NMBuildAutomationV3_deploy', parameters: [string(name: 'deployerHost', value: "${jsonData.deployerHost}"), string(name: 'deployerPort', value: "${jsonData.deployerPort}"),string(name: 'targetHost', value: "${jsonData.targetHost}"), string(name: 'targetPort', value: "${jsonData.targetPort}"), string(name: 'wM_package', value: "${jsonData.wM_package}"),string(name: 'targetWMVersion', value: "${jsonData.targetWMVersion}"), string(name: 'UseSSLTargetIS', value: "${jsonData.UseSSLTargetIS}"), string(name: 'target_path', value: "${WsDir}/${jsonData.target_path}"), string(name: 'deployerScript_path', value: "${WsDir}/${jsonData.deployerScript_path}")]
 			
-			// build job: 'NMBuildAutomationV2_deploy', parameters: [ string(name: 'deployerHost', value: "${jsonData.deployerHost}"), string(name: 'deployerPort', value: "${jsonData.deployerPort}"),string(name: 'targetHost', value: "${jsonData.targetHost}"), string(name: 'targetPort', value: "${jsonData.targetPort}"), string(name: 'targetWMVersion', value: "${jsonData.targetWMVersion}"), string(name: 'UseSSLTargetIS', value: "${jsonData.UseSSLTargetIS}")]
+			// build job: 'NMBuildAutomationV3_deploy', parameters: [ string(name: 'deployerHost', value: "${jsonData.deployerHost}"), string(name: 'deployerPort', value: "${jsonData.deployerPort}"),string(name: 'targetHost', value: "${jsonData.targetHost}"), string(name: 'targetPort', value: "${jsonData.targetPort}"), string(name: 'targetWMVersion', value: "${jsonData.targetWMVersion}"), string(name: 'UseSSLTargetIS', value: "${jsonData.UseSSLTargetIS}")]
 			
             }
         }
@@ -72,9 +72,9 @@ def jsonData,WsDir
 
 				echo 'Calling test pipeline..'
 				
-			  build job: 'NMBuildAutomationV2_test', parameters: [string(name: 'targetHost', value: "${jsonData.targetHost}"), string(name: 'targetPort', value: "${jsonData.targetPort}"),string(name: 'scopePackage', value: "${jsonData.wM_package}"), string(name: 'testSuiteExec_path', value: "${WsDir}/${jsonData.testSuiteExec_path}"), string(name: 'wMTestHomePath', value: "${WsDir}/${jsonData.wMTestHomePath}")]
+			  build job: 'NMBuildAutomationV3_test', parameters: [string(name: 'targetHost', value: "${jsonData.targetHost}"), string(name: 'targetPort', value: "${jsonData.targetPort}"),string(name: 'scopePackage', value: "${jsonData.wM_package}"), string(name: 'testSuiteExec_path', value: "${WsDir}/${jsonData.testSuiteExec_path}"), string(name: 'wMTestHomePath', value: "${WsDir}/${jsonData.wMTestHomePath}")]
 			 
-			 // build job: 'NMBuildAutomationV2_test', parameters: [ string(name: 'targetHost', value: "${jsonData.targetHost}"), string(name: 'targetPort', value: "${jsonData.targetPort}"),string(name: 'scopePackage', value: "${jsonData.wM_package}")]
+			 // build job: 'NMBuildAutomationV3_test', parameters: [ string(name: 'targetHost', value: "${jsonData.targetHost}"), string(name: 'targetPort', value: "${jsonData.targetPort}"),string(name: 'scopePackage', value: "${jsonData.wM_package}")]
 			 
 			 
             }
