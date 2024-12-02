@@ -34,7 +34,7 @@ def jsonData,WsDir
 				
 				echo 'Getting ABE and ws from GIT SCM'
 				
-				WsDir = "C:/JenkinsABE"
+				WsDir = "${jsonData.wMABEWorkspace}"
 				
 				ws ("${WsDir}"){
 					checkout scmGit(
@@ -91,7 +91,11 @@ def jsonData,WsDir
 					 dir ("${workspace}@tmp") {
                                 deleteDir()
 					   } 
-                                 
+                     
+					dir ("${WsDir}@tmp") {
+                                deleteDir()
+					   } 					 
+								 
                     }
             } 
 

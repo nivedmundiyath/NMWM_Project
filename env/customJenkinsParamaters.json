@@ -3,6 +3,7 @@
 	"target_path": "ws/target",
 	"gitRepowMABE": "NMWM_Project",
 	"gitABE_branch": "NM_ABE",
+	"wMABEWorkspace": "C:/JenkinsABE",
 	"abe_path": "ABE/common/AssetBuildEnvironment",
 	"wM_package": "NMBuildTest",
     "gitRepowMPackage": "NMWM_PackageRepo",
