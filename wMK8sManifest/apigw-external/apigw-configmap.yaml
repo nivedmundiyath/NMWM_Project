@@ -1,0 +1,81 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apigw-config
+  namespace: wm-apigw-dev
+data:
+#  HOST_DIR: "/opt/softwareag/IntegrationServer/custom/is_msr"
+#  PERSIST_LOGS: "true"
+#  PERSIST_CONFIGS: "false"
+#  JAVA_MIN_MEM: "256M"
+#  JAVA_MAX_MEM: "1024M"
+  licenseKey.xml: |
+    <?xml version="1.0" encoding="US-ASCII"?>
+    <SoftwareAG_License>
+    <Component Id="SalesInfo">
+    <SerialNumber>0000883667</SerialNumber>
+    <LicenseKey>320B024507A8BEE2511AA29E34B58DF9</LicenseKey>
+    <CustomerID>8104289</CustomerID>
+    <CustomerName>Airgas </CustomerName>
+    <ContractDetails>2090650</ContractDetails>
+    <ContractPosNumber>009790</ContractPosNumber>
+    <LicenseTypeDetails>External</LicenseTypeDetails>
+    <AutoCallHome/>
+    </Component>
+    <Component Id="ProductInfo">
+    <ExpirationDate>2027/01/29</ExpirationDate>
+    <OS>Linux</OS>
+    <ProductCode>YAIAA</ProductCode>
+    <ProductID/>
+    <ProductName>API Gateway Advanced Edition</ProductName>
+    <ProductVersion>10.7</ProductVersion>
+    <Usage>Development</Usage>
+    <RenewalDate/>
+    <HigherLevPosNr>009730</HigherLevPosNr>
+    <HigherLevProdCode>WMZAN</HigherLevProdCode>
+    <HigherLevProdName>webMethods API Management Enterprise(AN)</HigherLevProdName>
+    </Component>
+    <Component Id="Integration Server">
+    <ProductCode>YAI</ProductCode>
+    <ProductVersion>10.7</ProductVersion>
+    <ConcurrentSessions>Unlimited</ConcurrentSessions>
+    <Clustering>yes</Clustering>
+    <PubSub>no</PubSub>
+    <ART>no</ART>
+    <RemoteInvoke>yes</RemoteInvoke>
+    <GuaranteedDelivery>no</GuaranteedDelivery>
+    <SecurityAuditing>yes</SecurityAuditing>
+    <DistributedCache>yes</DistributedCache>
+    <EnterpriseGateway>yes</EnterpriseGateway>
+    <Microservices>yes</Microservices>
+    </Component>
+    <Component Id="APIGateway">
+    <PolicyManagementThreatProtection>yes</PolicyManagementThreatProtection>
+    <PolicyManagementGateway>yes</PolicyManagementGateway>
+    <ApplicationManagement>yes</ApplicationManagement>
+    <APIManagement>yes</APIManagement>
+    <AppMesh>yes</AppMesh>
+    </Component>
+    <Component Id="LicenseInfo">
+    <PriceUnit>ST</PriceUnit>
+    <PriceQuantity>1</PriceQuantity>
+    <TypeOfInstallation>Development</TypeOfInstallation>
+    <LicenseType>Development-Subscription</LicenseType>
+    <ExtendedRights>OU0</ExtendedRights>
+    <LicenseVersion>1.2</LicenseVersion>
+    <Metering/>
+    </Component>
+    </SoftwareAG_License>
+
+  config-sources.yml: |  
+    sources:
+    - type: YAML
+      allowed: true
+      properties:
+        location: /opt/softwareag/IntegrationServer/custom/sys-config.yml
+        
+#  sys-config.yml: |  
+#    apigw:
+#      kibana:
+#        dashboardInstance: http://kibana-external-svc.wm-apigw-dev:5601
+#        autostart: false

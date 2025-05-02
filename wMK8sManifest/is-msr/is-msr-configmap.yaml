@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: is-config
+  namespace: wm-is-dev
+data:
+  HOST_DIR: "/opt/softwareag/IntegrationServer/custom/is_msr"
+  PERSIST_LOGS: "true"
+  PERSIST_CONFIGS: "false"
+  JAVA_MIN_MEM: "256M"
+  JAVA_MAX_MEM: "1024M"
+#  SAG_IS_LICENSE_FILE: "/opt/softwareag/IntegrationServer/custom/licenseKey.xml"
+#  licenseKey.xml: |
+#    <<Provide licenseKey>>
+  application.properties: |
+    settings.watt.server.info.name=nmis
