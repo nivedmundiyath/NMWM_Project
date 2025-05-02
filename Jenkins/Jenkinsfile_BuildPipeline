@@ -3,7 +3,7 @@
     
     parameters {
                 string defaultValue: 'C:/ProgramData/Jenkins/.jenkins/workspace/source', description: 'Provide the build source path', name: 'source_path', trim: true
-                string defaultValue: 'C:/jenkins/test/target', description: 'Provide the build source path', name: 'target_path', trim: true
+                string defaultValue: 'C:/jenkins/test/target', description: 'Provide the build target path', name: 'target_path', trim: true
                 string defaultValue: 'C:/jenkins/ABE/SoftwareAG1011Designer/common/AssetBuildEnvironment', description: 'Provide the AssetBuildEnvironment path', name: 'abe_path', trim: true
                 string defaultValue: '10.11', description: 'Provide the build version', name: 'buildVersion', trim: true
 				//Remove below parameters if you are not using git as VCS and add your VCS parameters here
