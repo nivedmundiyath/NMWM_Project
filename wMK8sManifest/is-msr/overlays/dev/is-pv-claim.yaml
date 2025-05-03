@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: wm-pv-claim
+  name: is-pv-claim
   namespace: wm-is-dev
 spec:
   storageClassName: manual

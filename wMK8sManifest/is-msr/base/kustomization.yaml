@@ -1,0 +1,3 @@
+resources:
+  - is-msr-deploy.yaml
+  - is-msr-svc.yaml

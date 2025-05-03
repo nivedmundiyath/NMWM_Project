@@ -1,0 +1,6 @@
+bases:
+  - ../../base
+
+resources:
+  - is-msr-configmap.yaml
+  - is-pv-claim.yaml

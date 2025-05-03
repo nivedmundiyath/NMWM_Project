@@ -1,0 +1,5 @@
+FROM ibmwebmethods.azurecr.io/webmethods-microservicesruntime:10.15
+
+COPY ./packages/ /opt/softwareag/IntegrationServer/packages/
+
+ENTRYPOINT ["/opt/softwareag/IntegrationServer/bin/startContainer.sh"]
